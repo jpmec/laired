@@ -1,0 +1,13 @@
+<h2>Show world</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @world.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: world_path(@conn, :edit, @world) %>
+<%= link "Back", to: world_path(@conn, :index) %>

@@ -21,6 +21,7 @@ defmodule Laired.Router do
     resources "/users", UserController
     resources "/heros", HeroController
     resources "/lairs", LairController
+    resources "/worlds", WorldController
   end
 
   # Other scopes may use custom stacks.
