@@ -19,6 +19,8 @@ defmodule Laired.Router do
     get "/", PageController, :index
 
     resources "/users", UserController
+    resources "/heros", HeroController
+    resources "/lairs", LairController
   end
 
   # Other scopes may use custom stacks.

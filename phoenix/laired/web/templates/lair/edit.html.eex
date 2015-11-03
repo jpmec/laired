@@ -1,0 +1,6 @@
+<h2>Edit lair</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: lair_path(@conn, :update, @lair) %>
+
+<%= link "Back", to: lair_path(@conn, :index) %>

@@ -1,0 +1,13 @@
+<h2>Show lair</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @lair.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: lair_path(@conn, :edit, @lair) %>
+<%= link "Back", to: lair_path(@conn, :index) %>
