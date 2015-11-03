@@ -1,0 +1,26 @@
+<h2>Listing heros</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for hero <- @heros do %>
+    <tr>
+      <td><%= hero.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: hero_path(@conn, :show, hero), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: hero_path(@conn, :edit, hero), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: hero_path(@conn, :delete, hero), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New hero", to: hero_path(@conn, :new) %>
