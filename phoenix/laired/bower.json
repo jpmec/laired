@@ -1,0 +1,22 @@
+{
+  "name": "laired",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Josh Petitt <joshpetitt@jpmec.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "phaser": "~2.4.4"
+  }
+}
