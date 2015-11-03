@@ -1,0 +1,13 @@
+<h2>Show quest</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @quest.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: quest_path(@conn, :edit, @quest) %>
+<%= link "Back", to: quest_path(@conn, :index) %>

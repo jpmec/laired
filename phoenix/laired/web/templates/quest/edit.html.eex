@@ -1,0 +1,6 @@
+<h2>Edit quest</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: quest_path(@conn, :update, @quest) %>
+
+<%= link "Back", to: quest_path(@conn, :index) %>

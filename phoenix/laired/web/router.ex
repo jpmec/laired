@@ -21,6 +21,7 @@ defmodule Laired.Router do
     resources "/users", UserController
     resources "/heros", HeroController
     resources "/lairs", LairController
+    resources "/quests", QuestController
     resources "/worlds", WorldController
   end
 

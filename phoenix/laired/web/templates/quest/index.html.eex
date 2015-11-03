@@ -1,0 +1,26 @@
+<h2>Listing quests</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for quest <- @quests do %>
+    <tr>
+      <td><%= quest.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: quest_path(@conn, :show, quest), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: quest_path(@conn, :edit, quest), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: quest_path(@conn, :delete, quest), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New quest", to: quest_path(@conn, :new) %>
