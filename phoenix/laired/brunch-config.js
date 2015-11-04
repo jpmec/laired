@@ -19,6 +19,15 @@ exports.config = {
       //     "web/static/vendor/js/bootstrap.min.js"
       //   ]
       // }
+
+      order: {
+        before: [
+
+        ]
+        after: [
+          "web/static/js/game.js"
+        ]
+      }
     },
     stylesheets: {
       joinTo: "css/app.css"

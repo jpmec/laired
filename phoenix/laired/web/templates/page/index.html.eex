@@ -2,7 +2,7 @@
   <h2>Welcome Hero!</h2>
   <p class="lead">Would you like to go on a quest?</p>
   <p>
-    <button class="btn btn-success">Yes</button>
+    <%= link "Yes", to: game_path(@conn, :game), class: "btn btn-success" %>
     <button class="btn btn-default">No, thanks</button>
   </p>
 </div>

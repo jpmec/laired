@@ -18,6 +18,8 @@ defmodule Laired.Router do
 
     get "/", PageController, :index
 
+    get "/game", GameController, :game
+
     resources "/users", UserController
     resources "/heros", HeroController
     resources "/lairs", LairController

@@ -1,0 +1,6 @@
+<div class="jumbotron">
+  <h2>Welcome Hero!</h2>
+  <p class="lead">You are on a quest</p>
+
+  <div id="game_div"></div>
+</div>
