@@ -3,19 +3,17 @@
 </div>
 
 <div ng-controller="ChatController">
-<div class="col-md-12">
-    <input id="message-input"
-        class="form-control"
-        ng-model="chat.new_message"
-        ng-keyup="$event.keyCode == 13 && submit()"
-    />
-</div>
-
-<div class="col-md-12">
-    <div ng-repeat="message in chat.messages track by $index">
-        {{message}}
+    <div class="col-md-12">
+        <input id="message-input"
+            class="form-control"
+            ng-model="chat.new_message"
+            ng-keyup="$event.keyCode == 13 && submit()"
+        />
     </div>
-</div>
 
-{{chat}}
+    <div class="col-md-12">
+        <div ng-repeat="message in chat.messages track by $index">
+            {{message}}
+        </div>
+    </div>
 </div>
