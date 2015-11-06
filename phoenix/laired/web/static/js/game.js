@@ -36,7 +36,7 @@ lairedApp.factory('GamePreloader', function(
             game.load.baseURL = 'images/';
 
             var hero = HeroFactory.hero
-            hero.preload(game, hero)
+            hero.game.preload(hero, game)
 
             game.load.image('dirt', 'dirt.png');
         }
@@ -60,7 +60,7 @@ lairedApp.factory('GameCreater', function(
             input.create(game, input)
 
             var hero = HeroFactory.hero
-            hero.create(game, hero)
+            hero.game.create(hero, game)
 
 
 
@@ -95,7 +95,7 @@ lairedApp.factory('GameUpdater', function(
             var input = GameInputFactory.input
             var hero = HeroFactory.hero
 
-            hero.update(game, hero, input)
+            hero.game.update(hero, game, input)
         }
     };
 });
