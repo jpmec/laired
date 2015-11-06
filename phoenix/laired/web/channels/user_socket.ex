@@ -3,6 +3,7 @@ defmodule Laired.UserSocket do
 
   ## Channels
   channel "quests:*", Laired.QuestChannel
+  channel "chat:*", Laired.ChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

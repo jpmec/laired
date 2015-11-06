@@ -28,7 +28,9 @@ defmodule Laired.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Laired do
-  #   pipe_through :api
-  # end
+  scope "/api", Laired do
+    pipe_through :api
+
+    get "/sprite", SpriteController, :hero
+  end
 end

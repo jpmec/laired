@@ -17,6 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "phaser": "~2.4.4"
+    "phaser": "~2.4.4",
+    "angular": "angularjs#~1.4.7",
+    "lodash": "~3.10.1"
   }
 }

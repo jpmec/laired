@@ -10,6 +10,8 @@
 body, form, ul, table {
   margin-top: 20px;
   margin-bottom: 20px;
+  background-color: #111;
+  color: #0F0;
 }
 
 /* Phoenix flash messages */
@@ -53,7 +55,8 @@ form.link, form.button {
 /* Main marketing message */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #444;
+  background: #222;
 }
 
 /* Supporting marketing content */
