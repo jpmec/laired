@@ -25,7 +25,7 @@ var lairedApp = angular.module('lairedApp',
     [
         'lairedGame',
         'lairedChat',
-        'lairedHero',
+        'laired.Hero',
         'lairedAngel',
         'lairedPlace',
         'lairedDirt',
