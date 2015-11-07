@@ -28,8 +28,6 @@ lairedHero.factory('HeroFactory', function() {
 
                     run: {
                         stop: function(hero) {
-                            console.log('hero.game.actions.run.stop')
-
                             hero.game.sprite.animations.stop();
                             hero.game.sprite.frame = 4;
                         },

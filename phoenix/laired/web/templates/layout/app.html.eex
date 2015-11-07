@@ -23,5 +23,7 @@
     <script>require("web/static/js/app")</script>
     <script>require("web/static/js/game")</script>
     <script>require("web/static/js/game/hero")</script>
+    <script>require("web/static/js/game/place")</script>
+    <script>require("web/static/js/game/shovel")</script>
   </body>
 </html>

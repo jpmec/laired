@@ -1,7 +1,9 @@
 
 var lairedApp = angular.module('lairedApp',
     [
-        'lairedHero'
+        'lairedHero',
+        'lairedPlace',
+        'lairedShovel'
     ]
 );
 
@@ -25,20 +27,21 @@ lairedApp.factory('GameInputFactory', function() {
 
 
 lairedApp.factory('GamePreloader', function(
-    HeroFactory
+    HeroFactory,
+    PlaceFactory
 ) {
     console.log('GamePreloader')
 
     return {
         preload: function preload(game) {
             game.stage.backgroundColor = '#000000';
-
             game.load.baseURL = 'images/';
 
             var hero = HeroFactory.hero
             hero.game.preload(hero, game)
 
-            game.load.image('dirt', 'dirt.png');
+            var place = PlaceFactory.place
+            place.game.preload(place, game)
         }
     };
 });
@@ -48,7 +51,8 @@ lairedApp.factory('GamePreloader', function(
 
 lairedApp.factory('GameCreater', function(
     GameInputFactory,
-    HeroFactory
+    HeroFactory,
+    PlaceFactory
 ) {
     console.log('GameCreater')
 
@@ -62,7 +66,8 @@ lairedApp.factory('GameCreater', function(
             var hero = HeroFactory.hero
             hero.game.create(hero, game)
 
-
+            var place = PlaceFactory.place
+            place.game.create(place, game)
 
             // platforms = game.add.physicsGroup();
 
@@ -86,16 +91,20 @@ lairedApp.factory('GameCreater', function(
 
 lairedApp.factory('GameUpdater', function(
     GameInputFactory,
-    HeroFactory
+    HeroFactory,
+    PlaceFactory
 ) {
     console.log('GameUpdater')
 
     return {
         update: function(game) {
             var input = GameInputFactory.input
-            var hero = HeroFactory.hero
 
+            var hero = HeroFactory.hero
             hero.game.update(hero, game, input)
+
+            var place = PlaceFactory.place
+            place.game.update(place, game)
         }
     };
 });
@@ -136,7 +145,7 @@ lairedApp.controller('GameController', function ($scope, GameFactory) {
 lairedApp.controller('ChatController', function ($scope) {
 
   $scope.chat = {
-    "new_message":  'whazzup',
+    "new_message":  '',
     "messages": [
         'Hello world'
     ]
@@ -149,4 +158,3 @@ lairedApp.controller('ChatController', function ($scope) {
   }
 
 });
-
