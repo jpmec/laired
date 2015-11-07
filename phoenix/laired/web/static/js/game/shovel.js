@@ -6,9 +6,20 @@ lairedShovel.factory('ShovelFactory', function() {
 
     return {
         shovel: {
+            name: 'shovel',
+            description: 'used to dig dirt',
+
+            weight: 5,
+
+            hold: {
+                hand: {
+                    right: true
+                }
+            },
+
             ability: {
                 dig: {
-                    velocity: 250
+                    rate: 0.1
                 }
             },
 
@@ -26,19 +37,34 @@ lairedShovel.factory('ShovelFactory', function() {
                 preload: function(shovel, game) {
                     console.log('shovel.game.preload')
 
-                    game.load.image('shovel', 'sprites/things/shovel.png');
+                    game.load.image('shovel', 'sprites/stuff/shovel.png');
                 },
 
-                create: function(shovel, game) {
+                create: function(shovel, game, group) {
                     console.log('shovel.game.create')
 
-                    shovel.game.sprite = game.add.sprite(100, 200, 'shovel');
-                    game.physics.arcade.enable(shovel.game.sprite);
+                    if (group) {
+                        shovel.game.sprite = group.create(200, 200, 'shovel')
+                        shovel.game.sprite.stuff = shovel
 
-                    shovel.game.sprite.body.collideWorldBounds = true;
+                        game.physics.arcade.enable(shovel.game.sprite);
 
-                    shovel.game.sprite.body.bounce.y = 0.2;
-                    shovel.game.sprite.body.gravity.y = 500;
+                        shovel.game.sprite.body.collideWorldBounds = true;
+
+                        shovel.game.sprite.body.bounce.y = 0.2;
+                        shovel.game.sprite.body.gravity.y = 500;
+
+                    }
+                    else {
+                        shovel.game.sprite = game.add.sprite(200, 200, 'shovel');
+                        game.physics.arcade.enable(shovel.game.sprite);
+
+                        shovel.game.sprite.body.collideWorldBounds = true;
+
+                        shovel.game.sprite.body.bounce.y = 0.2;
+                        shovel.game.sprite.body.gravity.y = 500;
+
+                    }
                 },
 
                 update: function(shovel, game, input) {

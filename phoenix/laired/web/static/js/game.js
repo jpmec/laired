@@ -1,23 +1,19 @@
 
-var lairedApp = angular.module('lairedApp',
-    [
-        'lairedHero',
-        'lairedPlace',
-        'lairedShovel'
-    ]
-);
+var lairedGame = angular.module('lairedGame', []);
 
 
 
 
-lairedApp.factory('GameInputFactory', function() {
+lairedGame.factory('GameInputFactory', function() {
     console.log('GameInputFactory')
 
     return {
         input: {
             create: function(game, input) {
                 input.cursors = game.input.keyboard.createCursorKeys();
-                input.actionButton = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
+                input.altButton = game.input.keyboard.addKey(Phaser.Keyboard.ALT);
+                input.ctrlButton = game.input.keyboard.addKey(Phaser.Keyboard.CONTROL);
+                input.shiftButton = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
             }
         }
     }
@@ -26,7 +22,7 @@ lairedApp.factory('GameInputFactory', function() {
 
 
 
-lairedApp.factory('GamePreloader', function(
+lairedGame.factory('GamePreloader', function(
     HeroFactory,
     PlaceFactory
 ) {
@@ -49,7 +45,7 @@ lairedApp.factory('GamePreloader', function(
 
 
 
-lairedApp.factory('GameCreater', function(
+lairedGame.factory('GameCreater', function(
     GameInputFactory,
     HeroFactory,
     PlaceFactory
@@ -89,7 +85,7 @@ lairedApp.factory('GameCreater', function(
 
 
 
-lairedApp.factory('GameUpdater', function(
+lairedGame.factory('GameUpdater', function(
     GameInputFactory,
     HeroFactory,
     PlaceFactory
@@ -101,9 +97,27 @@ lairedApp.factory('GameUpdater', function(
             var input = GameInputFactory.input
 
             var hero = HeroFactory.hero
-            hero.game.update(hero, game, input)
-
             var place = PlaceFactory.place
+
+
+            game.physics.arcade.overlap(
+                hero.game.sprite,
+                place.game.stuff,
+                function(hero_sprite, stuff_sprite) {
+                    hero_sprite.hero.interaction.overlapStuff(hero_sprite.hero, stuff_sprite.stuff, input)
+                }
+            );
+
+
+            game.physics.arcade.overlap(
+                hero.game.sprite,
+                place.game.things,
+                function(hero_sprite, thing_sprite) {
+                    hero_sprite.hero.interaction.overlapThing(hero_sprite.hero, thing_sprite.thing, input)
+                }
+            );
+
+            hero.game.update(hero, game, input)
             place.game.update(place, game)
         }
     };
@@ -112,7 +126,7 @@ lairedApp.factory('GameUpdater', function(
 
 
 
-lairedApp.factory('GameFactory', function(
+lairedGame.factory('GameFactory', function(
     GamePreloader,
     GameCreater,
     GameUpdater
@@ -135,26 +149,10 @@ lairedApp.factory('GameFactory', function(
 
 
 
-lairedApp.controller('GameController', function ($scope, GameFactory) {
+lairedGame.controller('GameController', function ($scope, GameFactory) {
     $scope.game = GameFactory.game
 });
 
 
 
 
-lairedApp.controller('ChatController', function ($scope) {
-
-  $scope.chat = {
-    "new_message":  '',
-    "messages": [
-        'Hello world'
-    ]
-  }
-
-  $scope.submit = function() {
-    console.log('submit')
-    $scope.chat.messages.unshift($scope.chat.new_message)
-    $scope.chat.new_message = ''
-  }
-
-});

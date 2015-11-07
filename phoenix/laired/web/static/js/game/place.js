@@ -3,7 +3,8 @@ var lairedPlace = angular.module('lairedPlace', []);
 
 
 lairedPlace.factory('PlaceFactory', function(
-    ShovelFactory
+    ShovelFactory,
+    DirtFactory
 ) {
     console.log('PlaceFactory')
 
@@ -17,18 +18,25 @@ lairedPlace.factory('PlaceFactory', function(
                     shovel.game.preload(shovel, game)
 
                     game.load.image('dirt', 'dirt.png');
-
                 },
 
-                create: function(hero, game) {
+                create: function(place, game) {
                     console.log('place.game.create')
 
+                    place.game.stuff = game.add.group()
+                    place.game.stuff.enableBody = true
+
+                    place.game.things = game.add.group()
+                    place.game.things.enableBody = true
+
                     var shovel = ShovelFactory.shovel
-                    shovel.game.create(shovel, game)
+                    shovel.game.create(shovel, game, place.game.stuff)
+
+                    var dirt = DirtFactory.dirt
+                    dirt.game.create(dirt, game, place.game.things)
                 },
 
-                update: function(hero, game) {
-
+                update: function(place, game) {
                 }
             }
         }

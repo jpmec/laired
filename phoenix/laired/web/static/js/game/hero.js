@@ -6,6 +6,19 @@ lairedHero.factory('HeroFactory', function() {
 
     return {
         hero: {
+
+            bag: {
+                size: 2,
+                items: []
+            },
+
+            hold: {
+                hand: {
+                    left: null,
+                    right: null
+                }
+            },
+
             ability: {
                 jump: {
                     velocity: 300
@@ -16,8 +29,19 @@ lairedHero.factory('HeroFactory', function() {
                 }
             },
 
+            interaction: {
+                overlapThing: function(hero, thing, input) {
+                },
+
+                overlapStuff: function(hero, stuff, input) {
+                    if (input.ctrlButton.isDown) {
+                        hero.game.action.get.stuff(hero, stuff)
+                    }
+                }
+            },
+
             game: {
-                actions: {
+                action: {
                     jump: function(hero) {
                         console.log('hero.game.actions.jump')
 
@@ -33,21 +57,74 @@ lairedHero.factory('HeroFactory', function() {
                         },
 
                         left: function(hero) {
-                            console.log('hero.game.actions.run.left')
+//                            console.log('hero.game.actions.run.left')
 
-                            var velocity = hero.ability.run.velocity
+                            var velocity = hero.ability.run.velocity;
 
                             hero.game.sprite.body.velocity.x = -velocity;
                             hero.game.sprite.animations.play('left');
                         },
 
                         right: function(hero) {
-                            console.log('hero.game.actions.run.right')
+//                            console.log('hero.game.actions.run.right')
 
-                            var velocity = hero.ability.run.velocity
+                            var velocity = hero.ability.run.velocity;
 
                             hero.game.sprite.body.velocity.x = velocity;
                             hero.game.sprite.animations.play('right');
+                        }
+                    },
+
+                    get: {
+                        stuff: function(hero, stuff) {
+                            console.log('hero getting stuff')
+
+                            stuff.game.sprite.kill();
+
+                            if (stuff.hold.hand.right) {
+                                if (hero.hold.hand.right) {
+                                    holding = hero.hold.hand.right
+                                    hero.hold.hand.right = null
+
+                                    if (hero.hold.hand.left === holding) {
+                                        hero.hold.hand.left = null
+                                    }
+
+                                    hero.bag.items.push(holding);
+                                }
+                            }
+
+                            else if (stuff.hold.hand.left) {
+                                if (hero.hold.hand.left) {
+                                    holding = hero.hold.hand.left
+                                    hero.hold.hand.left = null
+
+                                    if (hero.hold.hand.right === holding) {
+                                        hero.hold.hand.right = null
+                                    }
+
+                                    hero.bag.items.push(holding);
+                                }
+                            }
+
+
+                            if (stuff.hold.hand.right) {
+                                if (hero.hold.hand.right) {
+                                    console.log('hero holding something in right hand')
+                                }
+                                else {
+                                    hero.hold.hand.right = stuff
+                                }
+                            }
+
+                            else if (stuff.hold.hand.left) {
+                                if (hero.hold.hand.left) {
+                                    console.log('hero holding something in left hand')
+                                }
+                                else {
+                                    hero.hold.hand.left = stuff
+                                }
+                            }
                         }
                     }
                 },
@@ -62,6 +139,8 @@ lairedHero.factory('HeroFactory', function() {
                     console.log('hero.game.create')
 
                     hero.game.sprite = game.add.sprite(100, 200, 'hero');
+                    hero.game.sprite.hero = hero
+
                     game.physics.arcade.enable(hero.game.sprite);
 
                     hero.game.sprite.body.collideWorldBounds = true;
@@ -85,7 +164,7 @@ lairedHero.factory('HeroFactory', function() {
                         // }
                         // else
                         // {
-                        hero.game.actions.run.left(hero)
+                        hero.game.action.run.left(hero)
                         // }
                     }
                     else if (input.cursors.right.isDown)
@@ -96,16 +175,16 @@ lairedHero.factory('HeroFactory', function() {
                         // }
                         // else
                         // {
-                        hero.game.actions.run.right(hero);
+                        hero.game.action.run.right(hero);
                         // }
                     }
                     else {
-                        hero.game.actions.run.stop(hero);
+                        hero.game.action.run.stop(hero);
                     }
 
                     if (input.cursors.up.isDown && (hero.game.sprite.body.onFloor() || hero.game.sprite.body.touching.down))
                     {
-                        hero.game.actions.jump(hero);
+                        hero.game.action.jump(hero);
                     }
                 }
             }
@@ -113,4 +192,15 @@ lairedHero.factory('HeroFactory', function() {
     }
 });
 
+
+
+
+
+lairedHero.controller('HeroController', function($scope, HeroFactory) {
+    console.log('HeroController')
+
+    $scope.hero = HeroFactory.hero
+
+
+});
 
