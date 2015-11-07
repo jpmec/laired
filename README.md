@@ -93,6 +93,8 @@ The Worlds
 
 * The World has daytime and nighttime.  Different NPCs and items will appear during daytime and nighttime.
 
+* Each 'game-day' in the World is 1 real-life hour.  There are 365 game-days in a game-year.
+
 * The World has items that the Hero can collect.
 
 * Hero's can trade items with each other.
@@ -109,6 +111,18 @@ The Worlds
 
 * There are Transporters that will transport a Hero to the location of other Transporters.  A Transporter may always transport to the same other Transporter, or a Transporter may be random.  Two Transporters may be mirrors, so that A->B and B->A, or they operate like A->B, B->C.
 
+
+
+Stuff and Things
+================
+
+There are two main categories of static entities:
+* Stuff
+* Things
+
+Stuff can be picked up by the Hero, and 'stuffed' in the HeroBag.
+Things can not be picked up by the Hero.
+Things may be turned into Stuff by the Hero.
 
 
 Resources
@@ -143,4 +157,10 @@ Friendly NPC
 Friendly NPC exist in Locations.
 A Hero's Guardian will not let them kill a friendly NPC.
 A Hero can collect some friendly NPC and transport them in the Bag.
+
+
+Traps
+=====
+A Hero can set, trip, disarm and collect traps.
+A Hero's sensing ability, or hat can allow him to see enemy traps.
 
