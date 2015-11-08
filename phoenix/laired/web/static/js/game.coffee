@@ -66,14 +66,14 @@ module.factory 'GameUpdater',
       hero.game.sprite,
       place.game.stuff,
       (hero_sprite, stuff_sprite)->
-        hero_sprite.hero.interaction.overlapStuff(hero_sprite.hero, stuff_sprite.stuff, input)
+        hero_sprite.hero.interaction.overlapStuff(hero_sprite.hero, stuff_sprite.stuff, place, input)
     )
 
     game.physics.arcade.overlap(
       hero.game.sprite,
       place.game.things,
       (hero_sprite, thing_sprite)->
-        hero_sprite.hero.interaction.overlapThing(hero_sprite.hero, thing_sprite.thing, input)
+        hero_sprite.hero.interaction.overlapThing(hero_sprite.hero, thing_sprite.thing, place, input)
     )
 
     game.physics.arcade.collide(
@@ -81,7 +81,7 @@ module.factory 'GameUpdater',
       place.game.things
     )
 
-    hero.game.update(hero, game, input)
+    hero.game.update(hero, game, input, place)
     place.game.update(place, game)
 
 

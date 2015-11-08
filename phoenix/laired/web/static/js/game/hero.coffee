@@ -24,12 +24,12 @@ module.factory 'HeroFactory',
           velocity: 250
 
       interaction:
-        overlapThing: (hero, thing, input)->
+        overlapThing: (hero, thing, place, input)->
           null
 
-        overlapStuff: (hero, stuff, input)->
+        overlapStuff: (hero, stuff, place, input)->
           if input.ctrlButton.isDown
-            hero.game.action.get.stuff(hero, stuff)
+            hero.game.action.get.stuff(hero, stuff, place)
 
       game:
         action:
@@ -53,10 +53,8 @@ module.factory 'HeroFactory',
               hero.game.sprite.animations.play('right');
 
           get:
-            stuff: (hero, stuff)->
+            stuff: (hero, stuff, place)->
               console.log('hero getting stuff')
-
-              #stuff.game.sprite.kill();
 
               if stuff.hold.hand.right
                 if hero.hold.hand.right
@@ -83,23 +81,50 @@ module.factory 'HeroFactory',
                   console.log('hero holding something in right hand')
                 else
                   hero.hold.hand.right = stuff
+                  place.game.stuff.removeChild(stuff.game.sprite)
                   hero.game.sprite.addChild(stuff.game.sprite)
                   stuff.game.sprite.x = stuff.hold.game.sprite.x
                   stuff.game.sprite.y = stuff.hold.game.sprite.y
                   stuff.game.sprite.body.bounce.y = 0;
                   stuff.game.sprite.body.gravity.y = 0;
-
 
               else if stuff.hold.hand.left
                 if hero.hold.hand.left
                   console.log('hero holding something in left hand')
                 else
                   hero.hold.hand.left = stuff
+                  place.game.stuff.removeChild(stuff.game.sprite)
                   hero.game.sprite.addChild(stuff.game.sprite)
                   stuff.game.sprite.x = stuff.hold.game.sprite.x
                   stuff.game.sprite.y = stuff.hold.game.sprite.y
                   stuff.game.sprite.body.bounce.y = 0;
                   stuff.game.sprite.body.gravity.y = 0;
+
+          put:
+            stuff: (hero, place)->
+              console.log('hero putting stuff')
+
+              if hero.hold.hand.right
+                stuff = hero.hold.hand.right
+                hero.hold.hand.right = null
+                hero.game.sprite.removeChild(stuff.game.sprite)
+                place.game.stuff.addChild(stuff.game.sprite)
+                stuff.game.sprite.x = hero.game.sprite.x
+                stuff.game.sprite.y = hero.game.sprite.y
+                stuff.game.sprite.body.bounce.y = stuff.physics.body.bounce.y;
+                stuff.game.sprite.body.gravity.y = stuff.physics.body.gravity.y;
+
+
+              if hero.hold.hand.left
+                stuff = hero.hold.hand.left
+                hero.hold.hand.left = null
+                hero.game.sprite.removeChild(stuff.game.sprite)
+                place.game.stuff.addChild(stuff.game.sprite)
+                stuff.game.sprite.x = hero.game.sprite.x
+                stuff.game.sprite.y = hero.game.sprite.y
+                stuff.game.sprite.body.bounce.y = stuff.physics.body.bounce.y;
+                stuff.game.sprite.body.gravity.y = stuff.physics.body.gravity.y;
+
 
         preload: (hero, game)->
           console.log('hero.game.preload')
@@ -127,7 +152,7 @@ module.factory 'HeroFactory',
 
           hero.game.group.add(hero.game.sprite)
 
-        update: (hero, game, input)->
+        update: (hero, game, input, place)->
 
           hero.game.sprite.body.velocity.x = 0
 
@@ -142,6 +167,10 @@ module.factory 'HeroFactory',
 
           if input.cursors.up.isDown && (hero.game.sprite.body.onFloor() || hero.game.sprite.body.touching.down)
             hero.game.action.jump(hero)
+
+          if input.ctrlButton.isDown
+            if input.shiftButton.isDown
+              hero.game.action.put.stuff(hero, place)
   }
 
 

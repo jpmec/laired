@@ -13,16 +13,28 @@ lairedDirt.factory('DirtFactory', function() {
                     game.load.image('dirt', 'sprites/dirt.png');
                 },
 
-                create: function(dirt, game) {
+                create: function(dirt, game, group) {
                     console.log('dirt.game.create')
-                    dirt.game.sprite = game.add.sprite(300, 200, 'dirt');
+
+
+                    if (group) {
+                        dirt.game.sprite = group.create(300, 500, 'dirt')
+                    }
+                    else {
+                        dirt.game.sprite = game.add.sprite(300, 500, 'dirt');
+                    }
+
+                    dirt.game.sprite.thing = dirt
 
                     game.physics.arcade.enable(dirt.game.sprite);
 
                     dirt.game.sprite.body.collideWorldBounds = true;
 
-                    dirt.game.sprite.body.bounce.y = 0.2;
-                    dirt.game.sprite.body.gravity.y = 500;
+                    dirt.game.sprite.checkCollision = true
+                    dirt.game.sprite.immovable = true
+
+                    //dirt.game.sprite.body.bounce.y = 0.2;
+                    //dirt.game.sprite.body.gravity.y = 500;
                 },
 
                 update: function(dirt, game, input) {

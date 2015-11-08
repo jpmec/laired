@@ -11,6 +11,17 @@ lairedShovel.factory('ShovelFactory', function() {
 
             weight: 5,
 
+            physics: {
+                body: {
+                    bounce: {
+                        y: 0.2
+                    },
+                    gravity: {
+                        y: 500
+                    }
+                }
+            },
+
             hold: {
                 hand: {
                     right: true
@@ -51,26 +62,20 @@ lairedShovel.factory('ShovelFactory', function() {
 
                     if (group) {
                         shovel.game.sprite = group.create(200, 200, 'shovel')
-                        shovel.game.sprite.stuff = shovel
-
-                        game.physics.arcade.enable(shovel.game.sprite);
-
-                        shovel.game.sprite.body.collideWorldBounds = true;
-
-                        shovel.game.sprite.body.bounce.y = 0.2;
-                        shovel.game.sprite.body.gravity.y = 500;
-
                     }
                     else {
                         shovel.game.sprite = game.add.sprite(200, 200, 'shovel');
-                        game.physics.arcade.enable(shovel.game.sprite);
-
-                        shovel.game.sprite.body.collideWorldBounds = true;
-
-                        shovel.game.sprite.body.bounce.y = 0.2;
-                        shovel.game.sprite.body.gravity.y = 500;
-
                     }
+
+                    shovel.game.sprite.stuff = shovel
+
+                    game.physics.arcade.enable(shovel.game.sprite);
+
+                    shovel.game.sprite.body.collideWorldBounds = true;
+
+                    shovel.game.sprite.body.bounce.y = shovel.physics.body.bounce.y;
+                    shovel.game.sprite.body.gravity.y = shovel.physics.body.gravity.y;
+
                 },
 
                 update: function(shovel, game, input) {
