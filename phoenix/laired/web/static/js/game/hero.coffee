@@ -34,10 +34,7 @@ module.factory 'HeroFactory',
       game:
         action:
           jump: (hero)->
-            console.log('hero.game.actions.jump')
-
             velocity = hero.ability.jump.velocity
-
             hero.game.sprite.body.velocity.y = -velocity;
 
           run:
@@ -59,7 +56,7 @@ module.factory 'HeroFactory',
             stuff: (hero, stuff)->
               console.log('hero getting stuff')
 
-              stuff.game.sprite.kill();
+              #stuff.game.sprite.kill();
 
               if stuff.hold.hand.right
                 if hero.hold.hand.right
@@ -86,13 +83,23 @@ module.factory 'HeroFactory',
                   console.log('hero holding something in right hand')
                 else
                   hero.hold.hand.right = stuff
+                  hero.game.sprite.addChild(stuff.game.sprite)
+                  stuff.game.sprite.x = stuff.hold.game.sprite.x
+                  stuff.game.sprite.y = stuff.hold.game.sprite.y
+                  stuff.game.sprite.body.bounce.y = 0;
+                  stuff.game.sprite.body.gravity.y = 0;
+
 
               else if stuff.hold.hand.left
                 if hero.hold.hand.left
                   console.log('hero holding something in left hand')
                 else
                   hero.hold.hand.left = stuff
-
+                  hero.game.sprite.addChild(stuff.game.sprite)
+                  stuff.game.sprite.x = stuff.hold.game.sprite.x
+                  stuff.game.sprite.y = stuff.hold.game.sprite.y
+                  stuff.game.sprite.body.bounce.y = 0;
+                  stuff.game.sprite.body.gravity.y = 0;
 
         preload: (hero, game)->
           console.log('hero.game.preload')
@@ -102,43 +109,33 @@ module.factory 'HeroFactory',
         create: (hero, game)->
           console.log('hero.game.create')
 
+          hero.game.group = game.add.group()
+          hero.game.group.hero = hero
+          hero.game.group.enableBody = true
+          game.physics.arcade.enable(hero.game.group);
+
           hero.game.sprite = game.add.sprite(100, 200, 'hero');
           hero.game.sprite.hero = hero
-
-          game.physics.arcade.enable(hero.game.sprite);
-
-          hero.game.sprite.body.collideWorldBounds = true;
-
-          hero.game.sprite.body.bounce.y = 0.2;
-          hero.game.sprite.body.gravity.y = 500;
-
           hero.game.sprite.animations.add('left', [0, 1, 2, 3], 10, true);
           hero.game.sprite.animations.add('right', [5, 6, 7, 8], 10, true);
 
+          game.physics.arcade.enable(hero.game.sprite);
+          hero.game.sprite.enableBody = true
+          hero.game.sprite.body.bounce.y = 0.2;
+          hero.game.sprite.body.gravity.y = 500;
+          hero.game.sprite.body.collideWorldBounds = true;
+
+          hero.game.group.add(hero.game.sprite)
 
         update: (hero, game, input)->
 
           hero.game.sprite.body.velocity.x = 0
 
           if input.cursors.left.isDown
-            # // if (input.actionButton.isDown && hero.sprite.body.touching.left)
-            # // {
-            # //   console.log('input.actionButton.isDown left');
-            # // }
-            # // else
-            # // {
             hero.game.action.run.left(hero)
-            # // }
 
           else if input.cursors.right.isDown
-            # // if (input.actionButton.isDown && hero.sprite.body.touching.right)
-            # // {
-            # //   console.log('input.actionButton.isDown right');
-            # // }
-            # // else
-            # // {
             hero.game.action.run.right(hero)
-            # // }
 
           else
             hero.game.action.run.stop(hero)

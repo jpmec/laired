@@ -117,6 +117,12 @@ lairedGame.factory('GameUpdater', function(
                 }
             );
 
+            game.physics.arcade.collide(
+                hero.game.sprite,
+                place.game.things
+            );
+
+
             hero.game.update(hero, game, input)
             place.game.update(place, game)
         }

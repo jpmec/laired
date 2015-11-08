@@ -14,6 +14,12 @@ lairedShovel.factory('ShovelFactory', function() {
             hold: {
                 hand: {
                     right: true
+                },
+                game: {
+                    sprite: {
+                        x: 20,
+                        y: 20
+                    }
                 }
             },
 
