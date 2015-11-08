@@ -1,5 +1,5 @@
 
-module = angular.module 'lairedChat', []
+module = angular.module 'laired.Chat', []
 
 
 module.controller 'ChatController',

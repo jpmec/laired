@@ -23,8 +23,8 @@ import socket from "./socket"
 
 var lairedApp = angular.module('lairedApp',
     [
-        'lairedGame',
-        'lairedChat',
+        'laired.Game',
+        'laired.Chat',
         'laired.Hero',
         'lairedAngel',
         'lairedPlace',
