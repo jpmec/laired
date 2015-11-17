@@ -1,0 +1,53 @@
+<h2>Show tileset</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @tileset.name %>
+  </li>
+
+  <li>
+    <strong>Firstgid:</strong>
+    <%= @tileset.firstgid %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @tileset.image %>
+  </li>
+
+  <li>
+    <strong>Imageheight:</strong>
+    <%= @tileset.imageheight %>
+  </li>
+
+  <li>
+    <strong>Imagewidth:</strong>
+    <%= @tileset.imagewidth %>
+  </li>
+
+  <li>
+    <strong>Margin:</strong>
+    <%= @tileset.margin %>
+  </li>
+
+  <li>
+    <strong>Spacing:</strong>
+    <%= @tileset.spacing %>
+  </li>
+
+  <li>
+    <strong>Tileheight:</strong>
+    <%= @tileset.tileheight %>
+  </li>
+
+  <li>
+    <strong>Tilewidth:</strong>
+    <%= @tileset.tilewidth %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: tileset_path(@conn, :edit, @tileset) %>
+<%= link "Back", to: tileset_path(@conn, :index) %>

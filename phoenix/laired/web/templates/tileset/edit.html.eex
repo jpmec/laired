@@ -1,0 +1,6 @@
+<h2>Edit tileset</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: tileset_path(@conn, :update, @tileset) %>
+
+<%= link "Back", to: tileset_path(@conn, :index) %>

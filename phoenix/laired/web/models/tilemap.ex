@@ -7,7 +7,9 @@ defmodule Laired.Tilemap do
     :tile_height,
     :width,
     :height,
-    :orientation
+    :orientation,
+    :layers,
+    :tilesets
   ]}
 
   schema "tilemaps" do
@@ -19,7 +21,8 @@ defmodule Laired.Tilemap do
     field :height, :integer
     field :orientation, :string
 
-    has_many :tilemap_layers, Laired.TilemapLayer
+    has_many :layers, Laired.TilemapLayer
+    has_many :tilesets, Laired.Tileset
 
     timestamps
   end

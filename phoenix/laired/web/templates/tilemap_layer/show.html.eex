@@ -1,0 +1,48 @@
+<h2>Show tilemap layer</h2>
+
+<ul>
+
+  <li>
+    <strong>Width:</strong>
+    <%= @tilemap_layer.width %>
+  </li>
+
+  <li>
+    <strong>Height:</strong>
+    <%= @tilemap_layer.height %>
+  </li>
+
+  <li>
+    <strong>X:</strong>
+    <%= @tilemap_layer.x %>
+  </li>
+
+  <li>
+    <strong>Y:</strong>
+    <%= @tilemap_layer.y %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @tilemap_layer.type %>
+  </li>
+
+  <li>
+    <strong>Visible:</strong>
+    <%= @tilemap_layer.visible %>
+  </li>
+
+  <li>
+    <strong>Opacity:</strong>
+    <%= @tilemap_layer.opacity %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @tilemap_layer.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: tilemap_layer_path(@conn, :edit, @tilemap_layer) %>
+<%= link "Back", to: tilemap_layer_path(@conn, :index) %>

@@ -4,6 +4,7 @@ defmodule Mix.Tasks.Laired.Data.New do
   alias Laired.Repo
   alias Laired.Tilemap
   alias Laired.TilemapLayer
+  alias Laired.Tileset
 
 
   def run(_args) do
@@ -40,6 +41,19 @@ defmodule Mix.Tasks.Laired.Data.New do
         1, 1, 1, 1,
         1, 1, 1, 1
       ]
+    }
+
+    tileset = Repo.insert! %Tileset {
+      tilemap_id: tilemap.id,
+      name: "lair",
+      firstgid: 1,
+      image: "lair.png",
+      imageheight: 64,
+      imagewidth: 176,
+      tileheight: 16,
+      tilewidth: 16,
+      margin: 0,
+      spacing: 0
     }
 
     # user = Repo.insert! %User {

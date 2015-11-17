@@ -1,0 +1,42 @@
+<h2>Listing tilesets</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Firstgid</th>
+      <th>Image</th>
+      <th>Imageheight</th>
+      <th>Imagewidth</th>
+      <th>Margin</th>
+      <th>Spacing</th>
+      <th>Tileheight</th>
+      <th>Tilewidth</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for tileset <- @tilesets do %>
+    <tr>
+      <td><%= tileset.name %></td>
+      <td><%= tileset.firstgid %></td>
+      <td><%= tileset.image %></td>
+      <td><%= tileset.imageheight %></td>
+      <td><%= tileset.imagewidth %></td>
+      <td><%= tileset.margin %></td>
+      <td><%= tileset.spacing %></td>
+      <td><%= tileset.tileheight %></td>
+      <td><%= tileset.tilewidth %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: tileset_path(@conn, :show, tileset), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: tileset_path(@conn, :edit, tileset), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: tileset_path(@conn, :delete, tileset), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New tileset", to: tileset_path(@conn, :new) %>

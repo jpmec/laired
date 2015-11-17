@@ -28,6 +28,7 @@ defmodule Laired.Router do
     resources "/quests", QuestController
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
+    resources "/tilesets", TilesetController
     resources "/worlds", WorldController
   end
 
@@ -39,6 +40,6 @@ defmodule Laired.Router do
 
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
-
+    resources "/tilesets", TilesetController
   end
 end
