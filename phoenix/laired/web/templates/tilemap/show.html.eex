@@ -1,0 +1,38 @@
+<h2>Show tilemap</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @tilemap.name %>
+  </li>
+
+  <li>
+    <strong>Tile width:</strong>
+    <%= @tilemap.tile_width %>
+  </li>
+
+  <li>
+    <strong>Tile height:</strong>
+    <%= @tilemap.tile_height %>
+  </li>
+
+  <li>
+    <strong>Width:</strong>
+    <%= @tilemap.width %>
+  </li>
+
+  <li>
+    <strong>Height:</strong>
+    <%= @tilemap.height %>
+  </li>
+
+  <li>
+    <strong>Orientation:</strong>
+    <%= @tilemap.orientation %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: tilemap_path(@conn, :edit, @tilemap) %>
+<%= link "Back", to: tilemap_path(@conn, :index) %>

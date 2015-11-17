@@ -1,0 +1,32 @@
+<h2>Listing tilemaps</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tile width</th>
+      <th>Tile height</th>
+      <th>Width</th>
+      <th>Height</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for tilemap <- @tilemaps do %>
+    <tr>
+      <td><%= tilemap.tile_width %></td>
+      <td><%= tilemap.tile_height %></td>
+      <td><%= tilemap.width %></td>
+      <td><%= tilemap.height %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: tilemap_path(@conn, :show, tilemap), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: tilemap_path(@conn, :edit, tilemap), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: tilemap_path(@conn, :delete, tilemap), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New tilemap", to: tilemap_path(@conn, :new) %>

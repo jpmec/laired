@@ -1,0 +1,6 @@
+<h2>New tilemap</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: tilemap_path(@conn, :create) %>
+
+<%= link "Back", to: tilemap_path(@conn, :index) %>

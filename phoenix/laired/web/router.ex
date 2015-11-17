@@ -19,11 +19,15 @@ defmodule Laired.Router do
     get "/", PageController, :index
 
     get "/game", GameController, :game
+    get "/lair_editor", LairEditorController, :editor
+
 
     resources "/users", UserController
     resources "/heros", HeroController
     resources "/lairs", LairController
     resources "/quests", QuestController
+    resources "/tilemaps", TilemapController
+    resources "/tilemap_layers", TilemapLayerController
     resources "/worlds", WorldController
   end
 
@@ -32,5 +36,9 @@ defmodule Laired.Router do
     pipe_through :api
 
     get "/sprite", SpriteController, :hero
+
+    resources "/tilemaps", TilemapController
+    resources "/tilemap_layers", TilemapLayerController
+
   end
 end

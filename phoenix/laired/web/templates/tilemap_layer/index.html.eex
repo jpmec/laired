@@ -1,0 +1,40 @@
+<h2>Listing tilemap layers</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Width</th>
+      <th>Height</th>
+      <th>X</th>
+      <th>Y</th>
+      <th>Type</th>
+      <th>Visible</th>
+      <th>Opacity</th>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for tilemap_layer <- @tilemap_layers do %>
+    <tr>
+      <td><%= tilemap_layer.width %></td>
+      <td><%= tilemap_layer.height %></td>
+      <td><%= tilemap_layer.x %></td>
+      <td><%= tilemap_layer.y %></td>
+      <td><%= tilemap_layer.type %></td>
+      <td><%= tilemap_layer.visible %></td>
+      <td><%= tilemap_layer.opacity %></td>
+      <td><%= tilemap_layer.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: tilemap_layer_path(@conn, :show, tilemap_layer), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: tilemap_layer_path(@conn, :edit, tilemap_layer), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: tilemap_layer_path(@conn, :delete, tilemap_layer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New tilemap layer", to: tilemap_layer_path(@conn, :new) %>
