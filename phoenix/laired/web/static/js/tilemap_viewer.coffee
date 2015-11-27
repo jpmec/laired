@@ -14,53 +14,63 @@ module.factory 'Tilemap',
 
 
 
-module.factory 'TilemapViewerPreloader',
-($location, Tilemap)->
-  console.log('TilemapViewerPreloader')
+module.factory 'TilemapViewerPreloaderFactory',
+($location, ImagesLocation, Tilemap)->
+  console.log('TilemapViewerPreloaderFactory')
 
-  preload: (game)->
-    console.log('TilemapViewerPreloader.preload')
+  (tilemap)->
+    preload: (game)->
+      console.log('TilemapViewerPreloader.preload')
 
-    protocol = $location.protocol()
-    host = $location.host()
-    port = $location.port()
+      game.stage.backgroundColor = '#000000';
+      game.load.baseURL = ImagesLocation.url()
 
-    game.stage.backgroundColor = '#000000';
-    game.load.baseURL = "#{protocol}://#{host}:#{port}/images/";
+      _.forEach tilemap.tilesets, (tileset)->
 
-    tilemap = Tilemap.object
-    console.log('TilemapViewerPreloader.preload loading ' + JSON.stringify(tilemap))
+        image_key = "#{tileset.name}_image"
+        image_path = "tilemaps/tiles/#{tileset.image}"
 
-    game.load.image('tileset', 'tilemaps/tiles/lair.png')
-
-    game.load.tilemap(
-      'tilemap',
-      null,
-      tilemap,
-      Phaser.Tilemap.TILED_JSON
-    )
+        console.log("TilemapViewerPreloader.preload loading '#{image_key}' from '#{image_path}'")
+        game.load.image image_key, image_path
 
 
+      game.load.tilemap(
+        tilemap.name,
+        null,
+        tilemap,
+        Phaser.Tilemap.TILED_JSON
+      )
 
 
 
-module.factory 'TilemapViewerCreater',
+
+
+module.factory 'TilemapViewerCreaterFactory',
 ()->
-  console.log('TilemapViewerCreater')
+  console.log('TilemapViewerCreaterFactory')
 
-  create: (game)->
-    console.log('TilemapViewerCreater.create')
+  (tilemap)->
+    console.log('TilemapViewerCreater')
 
-    console.log('TilemapViewerCreater.create adding tilemap')
-    map = game.add.tilemap('tilemap')
+    create: (game)->
+      console.log('TilemapViewerCreater.create')
 
-    console.log('TilemapViewerCreater.create adding tilesetimage')
-    map.addTilesetImage('tileset', 'tileset')
+      console.log("TilemapViewerCreater.create adding tilemap '#{tilemap.name}'")
+      map = game.add.tilemap(tilemap.name)
 
-    console.log('TilemapViewerCreater.create creating layer')
-    layer = map.createLayer('things')
-    # layer.resizeWorld();
-    # layer.wrap = true;
+      console.log('TilemapViewerCreater.create adding tilesets images')
+      _.forEach tilemap.tilesets, (tileset)->
+        tileset_key = "#{tileset.name}"
+        image_key = "#{tileset.name}_image"
+
+        console.log("TilemapViewerCreater.create adding tileset '#{tileset_key}' image '#{image_key}'")
+        map.addTilesetImage tileset_key, image_key
+
+      console.log('TilemapViewerCreater.create creating layers')
+      _.forEach tilemap.layers, (layer)->
+        layer = map.createLayer layer.name
+      # layer.resizeWorld();
+      # layer.wrap = true;
 
 
 
@@ -77,17 +87,25 @@ module.factory 'TilemapViewerUpdater',
 
 
 module.factory 'TilemapViewerFactory',
-(TilemapViewerPreloader, TilemapViewerCreater, TilemapViewerUpdater)->
+(TilemapViewerPreloaderFactory, TilemapViewerCreaterFactory, TilemapViewerUpdater)->
   console.log('TilemapViewerFactory')
 
-  ()->
+  (tilemap, kwargs)->
+    kwargs_ = _.merge({
+        width: tilemap.pixelsWidth()
+        height: tilemap.pixelsHeight()
+        id: 'tilemap_viewer_div'
+      }
+    , kwargs)
+
     new Phaser.Game(
-      670, 480,
+      kwargs_.width,
+      kwargs_.height,
       Phaser.AUTO,
-      'tilemap_viewer_div',
+      kwargs_.id,
       {
-        preload: TilemapViewerPreloader.preload,
-        create: TilemapViewerCreater.create,
+        preload: TilemapViewerPreloaderFactory(tilemap).preload,
+        create: TilemapViewerCreaterFactory(tilemap).create,
         update: TilemapViewerUpdater.update
       }
     )
@@ -96,7 +114,7 @@ module.factory 'TilemapViewerFactory',
 
 
 module.controller 'TilemapViewerController',
-($scope, TilemapsResource, Tilemap, TilemapViewerFactory)->
+($scope, TilemapsResource, Tilemap, TilemapFactory, TilemapViewerFactory)->
   console.log('TilemapViewerController')
 
   $scope.game = null
@@ -104,14 +122,13 @@ module.controller 'TilemapViewerController',
 
 
   $scope.initialize = ()->
-    console.debug('TilemapsController.initialize')
+    console.debug('TilemapViewerController.initialize')
 
     resource = TilemapsResource.get {id: 1}
     resource.$promise.then (data)->
-        console.debug('TilemapsController.initialize resource promise then ' + JSON.stringify(data))
+        console.debug('TilemapViewerController.initialize resource promise then ' + JSON.stringify(data))
 
-        Tilemap.object = data
-
-        $scope.game = TilemapViewerFactory()
+        Tilemap.object = TilemapFactory(data)
+        $scope.game = TilemapViewerFactory Tilemap.object
 
   $scope.initialize()

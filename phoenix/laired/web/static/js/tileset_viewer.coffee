@@ -18,7 +18,7 @@ module.factory 'TilesetTilemapFactory',
         {
           data: [1..tile_count],
           height: 1,
-          name: 'tileset',
+          name: "#{tileset.name}_layer",
           opacity: 1,
           type: 'tilelayer',
           visible: true,
@@ -38,49 +38,46 @@ module.factory 'TilesetTilemapFactory',
 
 
 
-module.factory 'TilesetViewerPreloader',
-($location, ImagesLocation, Tileset, TilesetTilemapFactory)->
+module.factory 'TilesetViewerPreloaderFactory',
+($location, ImagesLocation, TilesetTilemapFactory)->
   console.log('TilesetViewerPreloader')
 
-  preload: (game)->
-    console.log('TilesetViewerPreloader.preload')
+  (tileset)->
+    preload: (game)->
+      console.log('TilesetViewerPreloader.preload')
 
-    game.stage.backgroundColor = '#000000'
-    game.load.baseURL = ImagesLocation.url()
+      game.stage.backgroundColor = '#000000'
+      game.load.baseURL = ImagesLocation.url()
 
-    tileset = Tileset.object
-    console.log('TilesetViewerPreloader.preload loading ' + JSON.stringify(tilemap))
+      game.load.image("#{tileset.name}_image", "tilemaps/tiles/#{tileset.image}")
 
-    game.load.image('tileset', "tilemaps/tiles/#{tileset.image}")
-
-    tilemap = TilesetTilemapFactory(tileset)
-
-    game.load.tilemap(
-      'tilemap',
-      null,
-      tilemap,
-      Phaser.Tilemap.TILED_JSON
-    )
+      game.load.tilemap(
+        "#{tileset.name}_tilemap",
+        null,
+        TilesetTilemapFactory(tileset),
+        Phaser.Tilemap.TILED_JSON
+      )
 
 
 
 
 
-module.factory 'TilesetViewerCreater',
+module.factory 'TilesetViewerCreaterFactory',
 ()->
   console.log('TilesetViewerCreater')
 
-  create: (game)->
-    console.log('TilesetViewerCreater.create')
+  (tileset)->
+    create: (game)->
+      console.log('TilesetViewerCreater.create')
 
-    console.log('TilesetViewerCreater.create adding tilemap')
-    map = game.add.tilemap('tilemap')
+      console.log('TilesetViewerCreater.create adding tilemap')
+      map = game.add.tilemap("#{tileset.name}_tilemap")
 
-    console.log('TilesetViewerCreater.create adding tilesetimage')
-    map.addTilesetImage('tileset', 'tileset')
+      console.log('TilesetViewerCreater.create adding tilesetimage')
+      map.addTilesetImage(tileset.name, "#{tileset.name}_image")
 
-    console.log('TilesetViewerCreater.create creating layer')
-    layer = map.createLayer('tileset')
+      console.log('TilesetViewerCreater.create creating layer')
+      layer = map.createLayer("#{tileset.name}_layer")
 
 
 
@@ -97,17 +94,26 @@ module.factory 'TilesetViewerUpdater',
 
 
 module.factory 'TilesetViewerFactory',
-(TilesetViewerPreloader, TilesetViewerCreater, TilesetViewerUpdater)->
+(TilesetViewerPreloaderFactory, TilesetViewerCreaterFactory, TilesetViewerUpdater)->
   console.log('TilesetViewerFactory')
 
-  ()->
+  (tileset, kwargs)->
+    console.log('TilesetViewerFactory creating ' + JSON.stringify(kwargs))
+
+    kwargs_ = _.merge({
+        width: tileset.tileCount() * tileset.tilewidth
+        height: tileset.tileheight
+        id: 'tileset_viewer_div'
+      }
+    , kwargs)
+
     new Phaser.Game(
-      670, 480,
+      kwargs_.width, kwargs_.height,
       Phaser.AUTO,
-      'tileset_viewer_div',
+      kwargs_.id,
       {
-        preload: TilesetViewerPreloader.preload,
-        create: TilesetViewerCreater.create,
+        preload: TilesetViewerPreloaderFactory(tileset).preload,
+        create: TilesetViewerCreaterFactory(tileset).create,
         update: TilesetViewerUpdater.update
       }
     )
@@ -131,7 +137,6 @@ module.controller 'TilesetViewerController',
         console.debug('TilesetsController.initialize resource promise then ' + JSON.stringify(data))
 
         Tileset.object = TilesetFactory(data)
-
-        $scope.game = TilesetViewerFactory()
+        $scope.game = TilesetViewerFactory Tileset.object
 
   $scope.initialize()
