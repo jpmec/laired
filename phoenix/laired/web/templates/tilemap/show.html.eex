@@ -9,12 +9,12 @@
 
   <li>
     <strong>Tile width:</strong>
-    <%= @tilemap.tile_width %>
+    <%= @tilemap.tilewidth %>
   </li>
 
   <li>
     <strong>Tile height:</strong>
-    <%= @tilemap.tile_height %>
+    <%= @tilemap.tileheight %>
   </li>
 
   <li>
@@ -32,7 +32,19 @@
     <%= @tilemap.orientation %>
   </li>
 
+  <li>
+    <strong>Version:</strong>
+    <%= @tilemap.version %>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: tilemap_path(@conn, :edit, @tilemap) %>
 <%= link "Back", to: tilemap_path(@conn, :index) %>
+
+
+
+<div ng-controller='TilemapViewerController'>
+  <div id="tilemap_viewer_div" class="col-md-12"></div>
+  <pre>{{tilemap | json}}</pre>
+</div>

@@ -3,23 +3,25 @@ defmodule Laired.Tilemap do
 
   @derive {Poison.Encoder, only: [
     :name,
-    :tile_width,
-    :tile_height,
+    :tilewidth,
+    :tileheight,
     :width,
     :height,
     :orientation,
     :layers,
-    :tilesets
+    :tilesets,
+    :version
   ]}
 
   schema "tilemaps" do
 
     field :name, :string
-    field :tile_width, :integer
-    field :tile_height, :integer
+    field :tilewidth, :integer
+    field :tileheight, :integer
     field :width, :integer
     field :height, :integer
     field :orientation, :string
+    field :version, :integer
 
     has_many :layers, Laired.TilemapLayer
     has_many :tilesets, Laired.Tileset

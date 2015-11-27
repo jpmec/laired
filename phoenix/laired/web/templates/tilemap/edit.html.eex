@@ -4,3 +4,9 @@
                         action: tilemap_path(@conn, :update, @tilemap) %>
 
 <%= link "Back", to: tilemap_path(@conn, :index) %>
+
+
+<div ng-controller='TilemapViewerController'>
+  <div id="tilemap_viewer_div" class="col-md-12"></div>
+  <pre>{{tilemap | json}}</pre>
+</div>

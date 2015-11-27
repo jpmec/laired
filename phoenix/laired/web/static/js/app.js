@@ -23,12 +23,18 @@ import socket from "./socket"
 
 var lairedApp = angular.module('lairedApp',
     [
-        'laired.Game',
-        'laired.Chat',
-        'laired.Hero',
+        'ngResource',
         'laired.Angel',
+        'laired.Chat',
+        'laired.Game',
+        'laired.Hero',
+        'laired.Images',
         'laired.Place',
-        'laired.Thing.Dirt',
-        'laired.Stuff.Shovel'
+        'laired.Stuff.Shovel',
+        'laired.Tilemap',
+        'laired.TilemapViewer',
+        'laired.Tileset',
+        'laired.TilesetViewer',
+        'laired.Thing.Dirt'
     ]
 );

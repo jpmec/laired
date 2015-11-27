@@ -18,34 +18,39 @@ defmodule Mix.Tasks.Laired.Data.New do
 
     tilemap = Repo.insert! %Tilemap {
       name: "small_lair",
-      tile_width: 16,
-      tile_height: 16,
-      width: 4,
-      height: 4,
-      orientation: "orthogonal"
+      tilewidth: 16,
+      tileheight: 16,
+      width: 8,
+      height: 8,
+      orientation: "orthogonal",
+      version: 1
     }
 
     tilemap_layer = Repo.insert! %TilemapLayer {
       tilemap_id: tilemap.id,
       name: "things",
-      width: 4,
-      height: 4,
+      width: 8,
+      height: 8,
       x: 0,
       y: 0,
       type: "tilelayer",
       visible: true,
-      opacity: 100,
+      opacity: 1,
       data: [
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1
+         1,  2,  3,  4,  5,  6,  7,  8,
+         9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24,
+        25, 26, 27, 28, 29, 30, 31, 32,
+         1,  2,  3,  4,  5,  6,  7,  8,
+         9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24,
+        25, 26, 27, 28, 29, 30, 31, 32
       ]
     }
 
     tileset = Repo.insert! %Tileset {
       tilemap_id: tilemap.id,
-      name: "lair",
+      name: "tileset",
       firstgid: 1,
       image: "lair.png",
       imageheight: 64,

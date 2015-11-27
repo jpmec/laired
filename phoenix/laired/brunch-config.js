@@ -26,7 +26,8 @@ exports.config = {
 
       order: {
         after: [
-          "web/static/js/game.js"
+          "web/static/js/game.js",
+          "web/static/js/app.js"
         ]
       }
     },

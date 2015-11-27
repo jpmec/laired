@@ -51,3 +51,9 @@
 
 <%= link "Edit", to: tileset_path(@conn, :edit, @tileset) %>
 <%= link "Back", to: tileset_path(@conn, :index) %>
+
+
+<div ng-controller='TilesetViewerController'>
+  <div id="tileset_viewer_div" class="col-md-12"></div>
+  <pre>{{tileset | json}}</pre>
+</div>
