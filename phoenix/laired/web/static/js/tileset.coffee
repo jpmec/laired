@@ -7,9 +7,10 @@ module.factory 'TilesetFactory',
 ()->
   console.log('TilesetFactory')
 
-  (tileset_api_object)->
+  (tileset_api_object, object)->
 
-    object = angular.copy(tileset_api_object)
+    if not object?
+      object = angular.copy(tileset_api_object)
 
     object.tileCountWidth = ()->
         object.imagewidth / (object.tilewidth + object.spacing)

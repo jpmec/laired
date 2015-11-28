@@ -11,3 +11,9 @@
 
 <%= link "Edit", to: place_path(@conn, :edit, @place) %>
 <%= link "Back", to: place_path(@conn, :index) %>
+
+
+<div ng-controller='PlaceViewerController'>
+  <div id="place_viewer_div" class="col-md-12"></div>
+  <pre>{{place | json}}</pre>
+</div>

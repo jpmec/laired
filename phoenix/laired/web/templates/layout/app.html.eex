@@ -26,10 +26,11 @@
     <script>require("web/static/js/chat")</script>
     <script>require("web/static/js/game/hero")</script>
     <script>require("web/static/js/game/angel")</script>
-    <script>require("web/static/js/game/place")</script>
     <script>require("web/static/js/game/dirt")</script>
     <script>require("web/static/js/game/shovel")</script>
     <script>require("web/static/js/images")</script>
+    <script>require("web/static/js/place")</script>
+    <script>require("web/static/js/place_viewer")</script>
     <script>require("web/static/js/tile")</script>
     <script>require("web/static/js/tile_viewer")</script>
     <script>require("web/static/js/tilemap")</script>

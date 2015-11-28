@@ -15,7 +15,7 @@ module.factory 'Tilemap',
 
 
 module.factory 'TilemapViewerPreloaderFactory',
-($location, ImagesLocation, Tilemap)->
+($location, ImagesLocation, TilemapPreloaderFactory)->
   console.log('TilemapViewerPreloaderFactory')
 
   (tilemap)->
@@ -25,22 +25,7 @@ module.factory 'TilemapViewerPreloaderFactory',
       game.stage.backgroundColor = '#000000';
       game.load.baseURL = ImagesLocation.url()
 
-      _.forEach tilemap.tilesets, (tileset)->
-
-        image_key = "#{tileset.name}_image"
-        image_path = "tilemaps/tiles/#{tileset.image}"
-
-        console.log("TilemapViewerPreloader.preload loading '#{image_key}' from '#{image_path}'")
-        game.load.image image_key, image_path
-
-
-      game.load.tilemap(
-        tilemap.name,
-        null,
-        tilemap,
-        Phaser.Tilemap.TILED_JSON
-      )
-
+      TilemapPreloaderFactory(tilemap).preload(game)
 
 
 
@@ -55,22 +40,7 @@ module.factory 'TilemapViewerCreaterFactory',
     create: (game)->
       console.log('TilemapViewerCreater.create')
 
-      console.log("TilemapViewerCreater.create adding tilemap '#{tilemap.name}'")
-      map = game.add.tilemap(tilemap.name)
-
-      console.log('TilemapViewerCreater.create adding tilesets images')
-      _.forEach tilemap.tilesets, (tileset)->
-        tileset_key = "#{tileset.name}"
-        image_key = "#{tileset.name}_image"
-
-        console.log("TilemapViewerCreater.create adding tileset '#{tileset_key}' image '#{image_key}'")
-        map.addTilesetImage tileset_key, image_key
-
-      console.log('TilemapViewerCreater.create creating layers')
-      _.forEach tilemap.layers, (layer)->
-        layer = map.createLayer layer.name
-      # layer.resizeWorld();
-      # layer.wrap = true;
+      TilemapCreaterFactory(tilemap).preload(game)
 
 
 
