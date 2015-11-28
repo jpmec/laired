@@ -26,6 +26,8 @@ defmodule Laired.Tilemap do
     has_many :layers, Laired.TilemapLayer
     has_many :tilesets, Laired.Tileset
 
+    belongs_to :place, Laired.Place
+
     timestamps
   end
 

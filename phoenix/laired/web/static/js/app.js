@@ -31,9 +31,12 @@ var lairedApp = angular.module('lairedApp',
         'laired.Images',
         'laired.Place',
         'laired.Stuff.Shovel',
+        'laired.Tile',
+        'laired.TileViewer',
         'laired.Tilemap',
         'laired.TilemapViewer',
         'laired.Tileset',
+        'laired.TilesetTileSelecter',
         'laired.TilesetViewer',
         'laired.Thing.Dirt'
     ]

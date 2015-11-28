@@ -25,6 +25,7 @@ defmodule Laired.Router do
     resources "/users", UserController
     resources "/heros", HeroController
     resources "/lairs", LairController
+    resources "/places", PlaceController
     resources "/quests", QuestController
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
@@ -38,6 +39,7 @@ defmodule Laired.Router do
 
     get "/sprite", SpriteController, :hero
 
+    resources "/places", PlaceController
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
     resources "/tilesets", TilesetController

@@ -30,9 +30,12 @@
     <script>require("web/static/js/game/dirt")</script>
     <script>require("web/static/js/game/shovel")</script>
     <script>require("web/static/js/images")</script>
+    <script>require("web/static/js/tile")</script>
+    <script>require("web/static/js/tile_viewer")</script>
     <script>require("web/static/js/tilemap")</script>
     <script>require("web/static/js/tilemap_viewer")</script>
     <script>require("web/static/js/tileset")</script>
+    <script>require("web/static/js/tileset_tile_selecter")</script>
     <script>require("web/static/js/tileset_viewer")</script>
   </body>
 </html>

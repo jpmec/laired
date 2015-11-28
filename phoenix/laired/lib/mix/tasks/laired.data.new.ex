@@ -2,6 +2,7 @@ defmodule Mix.Tasks.Laired.Data.New do
   use Mix.Task
 
   alias Laired.Repo
+  alias Laired.Place
   alias Laired.Tilemap
   alias Laired.TilemapLayer
   alias Laired.Tileset
@@ -16,7 +17,13 @@ defmodule Mix.Tasks.Laired.Data.New do
 
     Repo.start_link
 
+    place = Repo.insert! %Place {
+      name: "small_lair"
+    }
+
+
     tilemap = Repo.insert! %Tilemap {
+      place_id: place.id,
       name: "small_lair",
       tilewidth: 64,
       tileheight: 64,
@@ -26,7 +33,33 @@ defmodule Mix.Tasks.Laired.Data.New do
       version: 1
     }
 
-    tilemap_layer = Repo.insert! %TilemapLayer {
+
+    tilemap_background_layer = Repo.insert! %TilemapLayer {
+      tilemap_id: tilemap.id,
+      name: "background",
+      width: 10,
+      height: 10,
+      x: 0,
+      y: 0,
+      type: "tilelayer",
+      visible: true,
+      opacity: 1,
+      data: [
+         2, 2, 2, 2, 2, 2, 1, 1, 1, 2,
+         2, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+         2, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+         2, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+         2, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+         2, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+      ]
+    }
+
+
+    tilemap_ground_layer = Repo.insert! %TilemapLayer {
       tilemap_id: tilemap.id,
       name: "ground",
       width: 10,
@@ -37,24 +70,39 @@ defmodule Mix.Tasks.Laired.Data.New do
       visible: true,
       opacity: 1,
       data: [
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5,
-         1,  2,  3,  4,  5, 1,  2,  3,  4,  5
+         2, 2, 2, 2, 2, 2, 2, 0, 2, 2,
+         2, 5, 1, 1, 1, 1, 0, 0, 1, 2,
+         2, 5, 5, 1, 1, 1, 0, 1, 5, 2,
+         2, 5, 5, 5, 1, 1, 1, 5, 5, 2,
+         2, 6, 5, 5, 5, 5, 5, 5, 5, 2,
+         2, 6, 6, 6, 6, 6, 6, 6, 6, 2,
+         2, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+         2, 2, 4, 4, 4, 2, 4, 4, 4, 2,
+         2, 2, 2, 4, 2, 2, 2, 4, 3, 2,
+         2, 2, 2, 2, 2, 2, 2, 2, 2, 2
       ]
     }
 
-    tileset = Repo.insert! %Tileset {
+
+    Repo.insert! %Tileset {
       tilemap_id: tilemap.id,
-      name: "underground_lair_tiles",
+      name: "underground_lair_background_tiles",
       firstgid: 1,
-      image: "underground_lair_tiles.png",
+      image: "underground_lair_background_tiles.png",
+      imageheight: 64,
+      imagewidth: 128,
+      tileheight: 64,
+      tilewidth: 64,
+      margin: 0,
+      spacing: 0
+    }
+
+
+    Repo.insert! %Tileset {
+      tilemap_id: tilemap.id,
+      name: "underground_lair_ground_tiles",
+      firstgid: 1,
+      image: "underground_lair_ground_tiles.png",
       imageheight: 64,
       imagewidth: 384,
       tileheight: 64,
@@ -62,6 +110,7 @@ defmodule Mix.Tasks.Laired.Data.New do
       margin: 0,
       spacing: 0
     }
+
 
     IO.puts "End generating data"
   end

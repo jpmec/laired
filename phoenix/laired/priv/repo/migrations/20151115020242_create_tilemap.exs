@@ -10,6 +10,7 @@ defmodule Laired.Repo.Migrations.CreateTilemap do
       add :height, :integer
       add :orientation, :string
       add :version, :integer
+      add :place_id, references(:places)
 
       timestamps
     end

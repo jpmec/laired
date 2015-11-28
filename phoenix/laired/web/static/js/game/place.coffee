@@ -3,7 +3,7 @@ module = angular.module 'laired.Place', []
 
 
 module.factory 'PlaceFactory',
-(ShovelFactory, DirtFactory)->
+(TilemapPreloaderFactory, ShovelFactory, DirtFactory)->
   console.log('PlaceFactory')
 
   place:
@@ -11,13 +11,26 @@ module.factory 'PlaceFactory',
       preload: (place, game)->
         console.log('place.game.preload')
 
+        TilemapPreloaderFactory(tilemap).preload(game)
+
+#        game.load.tilemap('lair_tilemap', 'tilemaps/maps/lair.json', null, Phaser.Tilemap.TILED_JSON)
+#        game.load.image('lair_tiles', 'tilemaps/tiles/lair.png')
+
         shovel = ShovelFactory.shovel
         shovel.game.preload(shovel, game)
 
-        game.load.image('dirt', 'dirt.png');
+        game.load.image('dirt', 'dirt.png')
+
 
       create: (place, game)->
         console.log('place.game.create')
+
+        map = game.add.tilemap('lair_tilemap')
+        map.addTilesetImage('lair', 'lair_tiles')
+
+        layer = map.createLayer('World1')
+        layer.resizeWorld();
+        layer.wrap = true;
 
         place.game.stuff = game.add.group()
         place.game.stuff.enableBody = true
