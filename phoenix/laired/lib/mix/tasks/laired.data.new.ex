@@ -1,8 +1,13 @@
 defmodule Mix.Tasks.Laired.Data.New do
   use Mix.Task
 
+  alias Laired.Bag
+  alias Laired.Hero
   alias Laired.Repo
   alias Laired.Place
+  alias Laired.Sprite
+  alias Laired.SpriteSheet
+  alias Laired.Stuff
   alias Laired.Tilemap
   alias Laired.TilemapLayer
   alias Laired.Tileset
@@ -16,6 +21,33 @@ defmodule Mix.Tasks.Laired.Data.New do
     Mix.Task.run "ecto.migrate",  ["Laired.Repo"]
 
     Repo.start_link
+
+
+    hero = Repo.insert! %Hero {
+      name: "Gyro"
+    }
+
+
+    bag = Repo.insert! %Bag {
+      hero_id: hero.id,
+      name: "Gyro's bag"
+    }
+
+
+    carrot = Repo.insert! %Stuff {
+      name: "Carrot",
+      description: "A tasty carrot",
+      bag_id: bag.id
+    }
+
+
+    sprite_sheet = Repo.insert! %SpriteSheet {
+      name: "Carrot",
+      image: "carrot.png",
+      imageheight: 21,
+      imagewidth: 22
+    }
+
 
     place = Repo.insert! %Place {
       name: "small_lair"

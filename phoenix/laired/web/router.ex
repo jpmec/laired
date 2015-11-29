@@ -22,15 +22,20 @@ defmodule Laired.Router do
     get "/lair_editor", LairEditorController, :editor
 
 
-    resources "/users", UserController
+    resources "/bags", BagController
     resources "/heros", HeroController
     resources "/lairs", LairController
     resources "/places", PlaceController
     resources "/quests", QuestController
+    resources "/sprite_sheets", SpriteSheetController
+    resources "/sprites", SpriteController
+    resources "/stuffs", StuffController
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
     resources "/tilesets", TilesetController
+    resources "/users", UserController
     resources "/worlds", WorldController
+
   end
 
   # Other scopes may use custom stacks.
@@ -39,7 +44,12 @@ defmodule Laired.Router do
 
     get "/sprite", SpriteController, :hero
 
+    resources "/bags", BagController
+    resources "/heros", HeroController
     resources "/places", PlaceController
+    resources "/sprite_sheets", SpriteSheetController
+    resources "/sprites", SpriteController
+    resources "/stuffs", StuffController
     resources "/tilemaps", TilemapController
     resources "/tilemap_layers", TilemapLayerController
     resources "/tilesets", TilesetController

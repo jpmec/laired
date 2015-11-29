@@ -1,0 +1,6 @@
+<h2>Edit sprite sheet</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: sprite_sheet_path(@conn, :update, @sprite_sheet) %>
+
+<%= link "Back", to: sprite_sheet_path(@conn, :index) %>

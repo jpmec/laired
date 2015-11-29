@@ -1,0 +1,6 @@
+<h2>New sprite</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: sprite_path(@conn, :create) %>
+
+<%= link "Back", to: sprite_path(@conn, :index) %>

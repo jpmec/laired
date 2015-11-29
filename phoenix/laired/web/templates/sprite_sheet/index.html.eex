@@ -1,0 +1,26 @@
+<h2>Listing sprite sheets</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sprite_sheet <- @sprite_sheets do %>
+    <tr>
+      <td><%= sprite_sheet.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: sprite_sheet_path(@conn, :show, sprite_sheet), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: sprite_sheet_path(@conn, :edit, sprite_sheet), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: sprite_sheet_path(@conn, :delete, sprite_sheet), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New sprite sheet", to: sprite_sheet_path(@conn, :new) %>

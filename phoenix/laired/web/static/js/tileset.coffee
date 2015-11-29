@@ -3,6 +3,17 @@
 module = angular.module 'laired.Tileset', []
 
 
+
+
+module.factory 'Tileset',
+()->
+  console.log('Tileset')
+  object:
+    null
+
+
+
+
 module.factory 'TilesetFactory',
 ()->
   console.log('TilesetFactory')
@@ -20,16 +31,6 @@ module.factory 'TilesetFactory',
         object.tileCountWidth() * object.tileCountHeight()
 
     object
-
-
-
-
-module.factory 'Tileset',
-()->
-  console.log('Tileset')
-  object:
-    null
-
 
 
 

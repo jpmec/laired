@@ -1,18 +1,14 @@
-defmodule Laired.Place do
+defmodule Laired.Sprite do
   use Laired.Web, :model
 
+
   @derive {Poison.Encoder, only: [
-    :name,
-    :tilemaps,
-    :stuffs
+    :name
   ]}
 
-  schema "places" do
+
+  schema "sprites" do
     field :name, :string
-
-    has_many :tilemaps, Laired.Tilemap
-    has_many :stuffs, Laired.Stuff
-
     timestamps
   end
 
