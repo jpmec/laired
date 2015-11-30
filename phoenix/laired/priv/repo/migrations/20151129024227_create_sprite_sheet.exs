@@ -9,6 +9,8 @@ defmodule Laired.Repo.Migrations.CreateSpriteSheet do
       add :imageheight, :integer
       add :imagewidth, :integer
 
+      add :sprite_id, references(:sprites)
+
       timestamps
     end
 

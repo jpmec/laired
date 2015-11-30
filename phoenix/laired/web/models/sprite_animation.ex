@@ -1,19 +1,19 @@
-defmodule Laired.SpriteSheet do
+defmodule Laired.SpriteAnimation do
   use Laired.Web, :model
 
   @derive {Poison.Encoder, only: [
     :name,
-    :image,
-    :imageheight,
-    :imagewidth
+    :frames,
+    :framerate,
+    :loop
   ]}
 
-  schema "sprite_sheets" do
+  schema "sprite_animations" do
     field :name, :string
 
-    field :image, :string
-    field :imageheight, :integer
-    field :imagewidth, :integer
+    field :frames, {:array, :integer}
+    field :framerate, :integer
+    field :loop, :boolean
 
     belongs_to :sprite, Laired.Sprite
 

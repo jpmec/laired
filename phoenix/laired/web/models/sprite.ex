@@ -3,12 +3,18 @@ defmodule Laired.Sprite do
 
 
   @derive {Poison.Encoder, only: [
-    :name
+    :name,
+    :spritesheets,
+    :spriteanimations
   ]}
 
 
   schema "sprites" do
     field :name, :string
+
+    has_many :spritesheets, Laired.SpriteSheet
+    has_many :spriteanimations, Laired.SpriteAnimation
+
     timestamps
   end
 

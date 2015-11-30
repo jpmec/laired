@@ -6,6 +6,7 @@ defmodule Mix.Tasks.Laired.Data.New do
   alias Laired.Repo
   alias Laired.Place
   alias Laired.Sprite
+  alias Laired.SpriteAnimation
   alias Laired.SpriteSheet
   alias Laired.Stuff
   alias Laired.Tilemap
@@ -41,11 +42,53 @@ defmodule Mix.Tasks.Laired.Data.New do
     }
 
 
-    sprite_sheet = Repo.insert! %SpriteSheet {
+    sprite = Repo.insert! %Sprite {
+      name: "Carrot"
+    }
+
+
+    spritesheet = Repo.insert! %SpriteSheet {
+      sprite_id: sprite.id,
+
       name: "Carrot",
       image: "carrot.png",
       imageheight: 21,
       imagewidth: 22
+    }
+
+
+    sprite = Repo.insert! %Sprite {
+      name: "Hero"
+    }
+
+
+    spritesheet = Repo.insert! %SpriteSheet {
+      sprite_id: sprite.id,
+
+      name: "Hero",
+      image: "hero.png",
+      imageheight: 28,
+      imagewidth: 288
+    }
+
+
+    spriteanimation = Repo.insert! %SpriteAnimation {
+      sprite_id: sprite.id,
+
+      name: "run_left",
+      frames: [0, 1, 2, 3],
+      framerate: 10,
+      loop: true
+    }
+
+
+    spriteanimation = Repo.insert! %SpriteAnimation {
+      sprite_id: sprite.id,
+
+      name: "run_right",
+      frames: [5, 6, 7, 8],
+      framerate: 10,
+      loop: true
     }
 
 

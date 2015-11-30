@@ -27,6 +27,7 @@ defmodule Laired.Router do
     resources "/lairs", LairController
     resources "/places", PlaceController
     resources "/quests", QuestController
+    resources "/sprite_animations", SpriteAnimationController
     resources "/sprite_sheets", SpriteSheetController
     resources "/sprites", SpriteController
     resources "/stuffs", StuffController
@@ -47,6 +48,7 @@ defmodule Laired.Router do
     resources "/bags", BagController
     resources "/heros", HeroController
     resources "/places", PlaceController
+    resources "/sprite_animations", SpriteAnimationController
     resources "/sprite_sheets", SpriteSheetController
     resources "/sprites", SpriteController
     resources "/stuffs", StuffController

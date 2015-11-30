@@ -20,7 +20,7 @@ module.factory 'SpriteSheetSpriteFactory',
 
 
 module.factory 'SpriteSheetViewerPreloaderFactory',
-($location, ImagesLocation, SpriteSheetSpriteFactory)->
+($location, ImagesLocation, SpriteSheetPreloaderFactory)->
   console.log('SpriteSheetViewerPreloader')
 
   (sprite_sheet)->
@@ -30,7 +30,7 @@ module.factory 'SpriteSheetViewerPreloaderFactory',
       game.stage.backgroundColor = '#000000'
       game.load.baseURL = ImagesLocation.url()
 
-      game.load.image("#{sprite_sheet.name}_image", "sprites/#{sprite_sheet.image}")
+      SpriteSheetPreloaderFactory(sprite_sheet).preload(game)
 
 
 

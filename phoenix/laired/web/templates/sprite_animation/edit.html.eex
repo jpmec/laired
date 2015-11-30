@@ -1,0 +1,6 @@
+<h2>Edit sprite animation</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: sprite_animation_path(@conn, :update, @sprite_animation) %>
+
+<%= link "Back", to: sprite_animation_path(@conn, :index) %>

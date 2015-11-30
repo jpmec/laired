@@ -35,3 +35,18 @@ module.factory 'SpriteSheetsApiResource',
   $resource('/api/sprite_sheets/:id')
 
 
+
+
+module.factory 'SpriteSheetPreloaderFactory',
+(SpriteSheetSpriteFactory)->
+  console.log('SpriteSheetPreloaderFactory')
+
+  (sprite_sheet)->
+    console.log('SpriteSheetPreloader')
+
+    preload: (game)->
+      console.log('SpriteSheetPreloader.preload')
+
+      game.load.image("#{sprite_sheet.name}_image", "sprites/#{sprite_sheet.image}")
+
+

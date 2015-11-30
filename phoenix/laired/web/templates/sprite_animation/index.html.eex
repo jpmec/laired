@@ -1,0 +1,26 @@
+<h2>Listing sprite animations</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sprite_animation <- @sprite_animations do %>
+    <tr>
+      <td><%= sprite_animation.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: sprite_animation_path(@conn, :show, sprite_animation), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: sprite_animation_path(@conn, :edit, sprite_animation), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: sprite_animation_path(@conn, :delete, sprite_animation), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New sprite animation", to: sprite_animation_path(@conn, :new) %>
