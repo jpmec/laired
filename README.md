@@ -3,6 +3,13 @@ LAIRED
 
 An open-source dungeon crawler.
 
+Goal
+----
+
+The goal of Laired is to use the Elixir programming language, with the Phoenix framework,
+to create a browser-based massively multiplayer online role-playing game.
+
+
 
 The Hero
 ========
@@ -36,11 +43,31 @@ A Hero has:
 
 * A Hero has Health.  Once a Hero's Health reaches zero, the Hero dies.
 
-* A Hero can use Skill to turn Items into other Items.  Skills must be learned from Books or from other NPC.
 
 * A Hero can have one or more other Heros as a Friend.  A Hero can chat with Friends during the game.  No matter where the other Friends are in the World.
 
 * The Chat is also used to interact with NPC, and for the Guardian to narrate and give hints about the World.
+
+
+Skills
+------
+* A Hero can use Skill to turn Items into other Items.
+* Skills must be learned from Books or from other NPC.
+
+Example skills are:
+
+* Cooking
+
+
+Abilities
+---------
+* A Hero gains abilities as a combination of their Skills and Stuff.
+* Abilities are verbs that can be performed by the Hero.
+
+Example abilities are:
+
+* Cook
+
 
 
 The Hero's Lair
@@ -58,6 +85,7 @@ The Hero's Lair
 * A Lair has an exit to the World.  The Lair may also exit to an 'unexplored' Ground where only the Hero and NPC's are located.  This allows the Hero to have their own playground that won't be disturbed by other players in the World.
 
 
+
 The Hero's Guardian Spirit
 ==========================
 
@@ -66,6 +94,7 @@ The Hero's Guardian Spirit
 * The Guardian can tell the Hero things throughout the game (i.e. tutor and narrator).
 * If the Hero dies, the Guardian will return the Hero's spirit back to the Hero's Lair where the Hero will be reincarnated.
 * If the Hero dies, everything the Hero had will be dropped in the spot in the world.  The Hero can either go back to collect it, or another player can find it.
+
 
 
 The Worlds
@@ -125,6 +154,7 @@ Things can not be picked up by the Hero.
 Things may be turned into Stuff by the Hero.
 
 
+
 Resources
 =========
 
@@ -132,6 +162,39 @@ A Location can have static resources
 * Minerals
 * Gems
 * Metals
+
+
+Dirt and DirtPiles
+------------------
+Dirt is found underground.
+Dirt occupies space.
+Dirt can be dug with hands or a shovel and turned into a DirtPile.
+DirtPiles can be stored in the HeroBag.
+Dirt is a by-product of Ores.
+Dirt can be dropped above ground, where it will disappear.
+
+
+Ores
+----
+Ores are the raw materials to extract metals, minerals and gems.
+The by-products of refining ore are Dirt, and one or more metals, minerals, or gems.
+
+Types of Ore:
+* Clay Ore
+* Coal Ore
+* Copper Ore
+* Iron Ore
+* Tin Ore
+* Zinc Ore
+
+
+
+Seeds
+=====
+
+A seed will cause a thing to appear in the future.
+Seeds don't have to be only for plants.
+
 
 
 Plants
@@ -159,8 +222,27 @@ A Hero's Guardian will not let them kill a friendly NPC.
 A Hero can collect some friendly NPC and transport them in the Bag.
 
 
+
 Traps
 =====
-A Hero can set, trip, disarm and collect traps.
-A Hero's sensing ability, or hat can allow him to see enemy traps.
+A Hero can set, trip, disarm and collect Traps.
+A Hero's sensing ability, or that can allow him to see enemy Traps.
+
+
+
+Books
+=====
+
+Books can be found, collected and read by the Hero.
+A Book will have a minimum ReadingComprehension Skill required to read the book.
+Higher ReadingComprehension will allow more Knowledges and Skills to be learned from the Book.
+
+
+
+Food
+====
+
+Food can be found, collected and eaten by the Hero.
+Food gives the Hero health.
+Food can be prepared by cooking to make more advanced food.
 
