@@ -1,0 +1,6 @@
+<h2>New bag</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: bag_path(@conn, :create) %>
+
+<%= link "Back", to: bag_path(@conn, :index) %>

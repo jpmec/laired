@@ -1,0 +1,6 @@
+<h2>New display group</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: display_group_path(@conn, :create) %>
+
+<%= link "Back", to: display_group_path(@conn, :index) %>

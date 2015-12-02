@@ -1,0 +1,28 @@
+<h2>Listing stuffs</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for stuff <- @stuffs do %>
+    <tr>
+      <td><%= stuff.name %></td>
+      <td><%= stuff.description %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: stuff_path(@conn, :show, stuff), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: stuff_path(@conn, :edit, stuff), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: stuff_path(@conn, :delete, stuff), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New stuff", to: stuff_path(@conn, :new) %>

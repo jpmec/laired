@@ -5,6 +5,8 @@ defmodule Laired.Repo.Migrations.CreateSprite do
     create table(:sprites) do
       add :name, :string
 
+      add :display_group_id, references(:display_groups)
+
       timestamps
     end
 

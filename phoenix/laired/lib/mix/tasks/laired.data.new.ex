@@ -2,6 +2,7 @@ defmodule Mix.Tasks.Laired.Data.New do
   use Mix.Task
 
   alias Laired.Bag
+  alias Laired.DisplayGroup
   alias Laired.Hero
   alias Laired.Repo
   alias Laired.Place
@@ -29,26 +30,37 @@ defmodule Mix.Tasks.Laired.Data.New do
     }
 
 
+    hero_display_group = Repo.insert! %DisplayGroup {
+      hero_id: hero.id,
+      name: "HeroDisplayGroup"
+    }
+
+
     bag = Repo.insert! %Bag {
       hero_id: hero.id,
       name: "Gyro's bag"
     }
 
 
-    carrot = Repo.insert! %Stuff {
+    carrot_stuff = Repo.insert! %Stuff {
       name: "Carrot",
       description: "A tasty carrot",
       bag_id: bag.id
     }
 
+    carrot_display_group = Repo.insert! %DisplayGroup {
+      name: "CarrotDisplayGroup",
+      stuff_id: carrot_stuff.id
+    }
 
-    sprite = Repo.insert! %Sprite {
-      name: "Carrot"
+    carrot_sprite = Repo.insert! %Sprite {
+      name: "Carrot",
+      display_group_id: carrot_display_group.id
     }
 
 
-    spritesheet = Repo.insert! %SpriteSheet {
-      sprite_id: sprite.id,
+    carrot_spritesheet = Repo.insert! %SpriteSheet {
+      sprite_id: carrot_sprite.id,
 
       name: "Carrot",
       image: "carrot.png",

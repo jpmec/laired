@@ -1,0 +1,26 @@
+<h2>Listing bags</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for bag <- @bags do %>
+    <tr>
+      <td><%= bag.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: bag_path(@conn, :show, bag), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: bag_path(@conn, :edit, bag), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: bag_path(@conn, :delete, bag), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New bag", to: bag_path(@conn, :new) %>

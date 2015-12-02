@@ -30,7 +30,43 @@ defmodule Laired.HeroController do
 
   def show(conn, %{"id" => id}) do
     hero = Repo.get!(Hero, id)
-    render(conn, "show.html", hero: hero)
+      |> Repo.preload({:bag, [
+        {:stuffs, [
+          {:display_group, [
+            {:sprites, :spriteanimations},
+            {:sprites, :spritesheets}
+          ]}
+        ]}
+      ]})
+
+
+    # hero = Repo.get!(Hero, id)
+    #   |> Repo.preload({
+    #     :bag, [
+    #       {:stuffs, [
+    #         :display_group, [
+    #           {:sprites, :spriteanimations},
+    #           {:sprites, :spritesheets}
+    #         ]
+    #       ]}
+    #     ]
+    #   })
+
+
+#      |> Repo.preload([{:display_group, :groups}])
+
+
+#    place = Repo.get!(Place, id) |> Repo.preload([{:tilemaps, :layers}, {:tilemaps, :tilesets}])
+
+
+
+    case get_format(conn) do
+      "json" ->
+        render(conn, hero: hero)
+      _ ->
+        render(conn, "show.html", hero: hero)
+    end
+
   end
 
   def edit(conn, %{"id" => id}) do

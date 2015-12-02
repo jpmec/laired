@@ -1,0 +1,13 @@
+<h2>Show display group</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @display_group.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: display_group_path(@conn, :edit, @display_group) %>
+<%= link "Back", to: display_group_path(@conn, :index) %>

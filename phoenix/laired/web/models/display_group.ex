@@ -1,21 +1,21 @@
-defmodule Laired.Sprite do
+defmodule Laired.DisplayGroup do
   use Laired.Web, :model
-
 
   @derive {Poison.Encoder, only: [
     :name,
-    :spritesheets,
-    :spriteanimations
+#    :groups,
+    :sprites
   ]}
 
-
-  schema "sprites" do
+  schema "display_groups" do
     field :name, :string
 
-    has_many :spritesheets, Laired.SpriteSheet
-    has_many :spriteanimations, Laired.SpriteAnimation
+    has_many :groups, Laired.DisplayGroup
+    has_many :sprites, Laired.Sprite
 
-    belongs_to :display_group, Laired.DisplayGroup
+    belongs_to :group, Laired.DisplayGroup
+    belongs_to :hero, Laired.Hero
+    belongs_to :stuff, Laired.Stuff
 
     timestamps
   end

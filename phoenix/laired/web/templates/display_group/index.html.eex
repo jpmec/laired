@@ -1,0 +1,26 @@
+<h2>Listing display groups</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for display_group <- @display_groups do %>
+    <tr>
+      <td><%= display_group.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: display_group_path(@conn, :show, display_group), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: display_group_path(@conn, :edit, display_group), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: display_group_path(@conn, :delete, display_group), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New display group", to: display_group_path(@conn, :new) %>

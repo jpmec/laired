@@ -1,8 +1,17 @@
 defmodule Laired.Hero do
   use Laired.Web, :model
 
+  @derive {Poison.Encoder, only: [
+    :name,
+    :bag
+#    :display_group
+  ]}
+
   schema "heros" do
     field :name, :string
+
+    has_one :bag, Laired.Bag
+    has_one :display_group, Laired.DisplayGroup
 
     timestamps
   end

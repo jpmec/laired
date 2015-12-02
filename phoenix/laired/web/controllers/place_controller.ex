@@ -29,7 +29,9 @@ defmodule Laired.PlaceController do
   end
 
   def show(conn, %{"id" => id}) do
-    place = Repo.get!(Place, id) |> Repo.preload([{:tilemaps, :layers}, {:tilemaps, :tilesets}])
+    place = Repo.get!(Place, id)
+      |> Repo.preload([{:tilemaps, :layers}, {:tilemaps, :tilesets}])
+      |> Repo.preload(:stuffs)
 
     case get_format(conn) do
       "json" ->

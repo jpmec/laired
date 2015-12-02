@@ -23,6 +23,7 @@ defmodule Laired.Router do
 
 
     resources "/bags", BagController
+    resources "/display_groups", DisplayGroupController
     resources "/heros", HeroController
     resources "/lairs", LairController
     resources "/places", PlaceController
@@ -46,6 +47,7 @@ defmodule Laired.Router do
     get "/sprite", SpriteController, :hero
 
     resources "/bags", BagController
+    resources "/display_groups", DisplayGroupController
     resources "/heros", HeroController
     resources "/places", PlaceController
     resources "/sprite_animations", SpriteAnimationController
