@@ -246,3 +246,12 @@ Food can be found, collected and eaten by the Hero.
 Food gives the Hero health.
 Food can be prepared by cooking to make more advanced food.
 
+
+
+Achievements
+============
+
+A Hero can unlock Achievements by completing certain requirements.
+Achievements are displayed on the Hero's public profile.
+Achievements are only good for bragging rights and to indicate how active the Hero is within the game.
+
