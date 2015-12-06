@@ -5,7 +5,8 @@ defmodule Laired.Sprite do
   @derive {Poison.Encoder, only: [
     :name,
     :spritesheets,
-    :spriteanimations
+    :spriteanimations,
+    :body
   ]}
 
 
@@ -14,6 +15,8 @@ defmodule Laired.Sprite do
 
     has_many :spritesheets, Laired.SpriteSheet
     has_many :spriteanimations, Laired.SpriteAnimation
+
+    has_one :body, Laired.PhaserPhysicsBody
 
     belongs_to :display_group, Laired.DisplayGroup
 

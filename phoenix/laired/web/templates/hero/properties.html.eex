@@ -1,0 +1,12 @@
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @hero.name %>
+  </li>
+
+  <li>
+    <strong>Bag:</strong>
+    <%= render Laired.BagView, "properties.html", bag: @hero.bag %>
+  </li>
+
+</ul>

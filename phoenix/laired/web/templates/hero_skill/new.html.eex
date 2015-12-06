@@ -1,0 +1,6 @@
+<h2>New hero skill</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: hero_skill_path(@conn, :create) %>
+
+<%= link "Back", to: hero_skill_path(@conn, :index) %>

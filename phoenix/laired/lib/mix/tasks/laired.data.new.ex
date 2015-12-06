@@ -4,7 +4,10 @@ defmodule Mix.Tasks.Laired.Data.New do
   alias Laired.Bag
   alias Laired.DisplayGroup
   alias Laired.Hero
+  alias Laired.HeroAbility
+  alias Laired.HeroSkill
   alias Laired.Repo
+  alias Laired.PhaserPhysicsBody
   alias Laired.Place
   alias Laired.Sprite
   alias Laired.SpriteAnimation
@@ -27,6 +30,32 @@ defmodule Mix.Tasks.Laired.Data.New do
 
     hero = Repo.insert! %Hero {
       name: "Gyro"
+    }
+
+
+    hero_ability = Repo.insert! %HeroAbility {
+      hero_id: hero.id,
+      name: "run",
+      data: %{"velocity" => 100}
+    }
+
+
+    hero_ability = Repo.insert! %HeroAbility {
+      hero_id: hero.id,
+      name: "jump",
+      data: %{"velocity" => 200}
+    }
+
+
+    hero_skill = Repo.insert! %HeroSkill {
+      hero_id: hero.id,
+      name: "bunny_hop",
+      data: %{
+        "affects" => "jump",
+        "modifier" => "linear",
+        "gain" => 1.1,
+        "bias" => 100
+      }
     }
 
 
@@ -69,13 +98,26 @@ defmodule Mix.Tasks.Laired.Data.New do
     }
 
 
-    sprite = Repo.insert! %Sprite {
-      name: "Hero"
+    hero_sprite = Repo.insert! %Sprite {
+      name: "Hero",
+      display_group_id: hero_display_group.id
     }
 
 
-    spritesheet = Repo.insert! %SpriteSheet {
-      sprite_id: sprite.id,
+    hero_sprite_body = Repo.insert! %PhaserPhysicsBody {
+      sprite_id: hero_sprite.id,
+
+      collideWorldBounds: true,
+      bounce: %{
+        y: 0.2
+      },
+      gravity: %{
+        y: 250
+      }
+    }
+
+    hero_spritesheet = Repo.insert! %SpriteSheet {
+      sprite_id: hero_sprite.id,
 
       name: "Hero",
       image: "hero.png",
@@ -85,7 +127,7 @@ defmodule Mix.Tasks.Laired.Data.New do
 
 
     spriteanimation = Repo.insert! %SpriteAnimation {
-      sprite_id: sprite.id,
+      sprite_id: hero_sprite.id,
 
       name: "run_left",
       frames: [0, 1, 2, 3],
@@ -95,7 +137,7 @@ defmodule Mix.Tasks.Laired.Data.New do
 
 
     spriteanimation = Repo.insert! %SpriteAnimation {
-      sprite_id: sprite.id,
+      sprite_id: hero_sprite.id,
 
       name: "run_right",
       frames: [5, 6, 7, 8],

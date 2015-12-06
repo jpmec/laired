@@ -1,18 +1,6 @@
 <h2>Show hero</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @hero.name %>
-  </li>
-
-  <li>
-    <strong>Bag:</strong>
-    <%= @hero.bag.name %>
-  </li>
-
-</ul>
+<%= render "properties.html", hero: @hero %>
 
 <%= link "Edit", to: hero_path(@conn, :edit, @hero) %>
 <%= link "Back", to: hero_path(@conn, :index) %>

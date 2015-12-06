@@ -29,7 +29,10 @@ defmodule Laired.SpriteController do
   end
 
   def show(conn, %{"id" => id}) do
-    sprite = Repo.get!(Sprite, id) |> Repo.preload(:spritesheets) |> Repo.preload(:spriteanimations)
+    sprite = Repo.get!(Sprite, id)
+      |> Repo.preload(:spritesheets)
+      |> Repo.preload(:spriteanimations)
+      |> Repo.preload(:body)
 
     case get_format(conn) do
       "json" ->

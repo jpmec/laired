@@ -1,0 +1,27 @@
+<h2>Listing phaser physics bodies</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Collideworldbounds</th>
+      <th></th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for phaser_physics_body <- @phaser_physics_bodies do %>
+    <tr>
+      <td><%= phaser_physics_body.collideWorldBounds %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: phaser_physics_body_path(@conn, :show, phaser_physics_body), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: phaser_physics_body_path(@conn, :edit, phaser_physics_body), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: phaser_physics_body_path(@conn, :delete, phaser_physics_body), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New phaser physics body", to: phaser_physics_body_path(@conn, :new) %>

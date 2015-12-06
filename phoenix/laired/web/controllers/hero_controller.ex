@@ -30,35 +30,22 @@ defmodule Laired.HeroController do
 
   def show(conn, %{"id" => id}) do
     hero = Repo.get!(Hero, id)
-      |> Repo.preload({:bag, [
-        {:stuffs, [
-          {:display_group, [
-            {:sprites, :spriteanimations},
-            {:sprites, :spritesheets}
+      |> Repo.preload([
+        {:bag, [
+          {:stuffs, [
+            {:display_group, [
+              {:sprites, :spriteanimations},
+              {:sprites, :spritesheets}
+            ]}
           ]}
-        ]}
-      ]})
-
-
-    # hero = Repo.get!(Hero, id)
-    #   |> Repo.preload({
-    #     :bag, [
-    #       {:stuffs, [
-    #         :display_group, [
-    #           {:sprites, :spriteanimations},
-    #           {:sprites, :spritesheets}
-    #         ]
-    #       ]}
-    #     ]
-    #   })
-
-
-#      |> Repo.preload([{:display_group, :groups}])
-
-
-#    place = Repo.get!(Place, id) |> Repo.preload([{:tilemaps, :layers}, {:tilemaps, :tilesets}])
-
-
+        ]},
+        {:display_group, [
+          {:sprites, :spriteanimations},
+          {:sprites, :spritesheets}
+        ]},
+        :abilities,
+        :skills
+      ])
 
     case get_format(conn) do
       "json" ->

@@ -1,0 +1,13 @@
+<h2>Show phaser physics body</h2>
+
+<ul>
+
+  <li>
+    <strong>Collideworldbounds:</strong>
+    <%= @phaser_physics_body.collideWorldBounds %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: phaser_physics_body_path(@conn, :edit, @phaser_physics_body) %>
+<%= link "Back", to: phaser_physics_body_path(@conn, :index) %>

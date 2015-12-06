@@ -1,0 +1,8 @@
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @bag.name %>
+  </li>
+
+</ul>

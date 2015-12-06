@@ -1,22 +1,16 @@
-defmodule Laired.Hero do
+defmodule Laired.HeroSkill do
   use Laired.Web, :model
 
   @derive {Poison.Encoder, only: [
     :name,
-    :bag,
-    :display_group,
-    :abilities,
-    :skills
+    :data
   ]}
 
-  schema "heros" do
+  schema "hero_skills" do
     field :name, :string
+    field :data, :map
 
-    has_one :bag, Laired.Bag
-    has_one :display_group, Laired.DisplayGroup
-
-    has_many :abilities, Laired.HeroAbility
-    has_many :skills, Laired.HeroSkill
+    belongs_to :hero, Laired.Hero
 
     timestamps
   end

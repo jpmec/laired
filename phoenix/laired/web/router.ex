@@ -24,8 +24,11 @@ defmodule Laired.Router do
 
     resources "/bags", BagController
     resources "/display_groups", DisplayGroupController
+    resources "/hero_abilities", HeroAbilityController
+    resources "/hero_skills", HeroSkillController
     resources "/heros", HeroController
     resources "/lairs", LairController
+    resources "/phaser_physics_bodies", PhaserPhysicsBodyController
     resources "/places", PlaceController
     resources "/quests", QuestController
     resources "/sprite_animations", SpriteAnimationController
@@ -37,7 +40,6 @@ defmodule Laired.Router do
     resources "/tilesets", TilesetController
     resources "/users", UserController
     resources "/worlds", WorldController
-
   end
 
   # Other scopes may use custom stacks.
@@ -48,8 +50,13 @@ defmodule Laired.Router do
 
     resources "/bags", BagController
     resources "/display_groups", DisplayGroupController
+    resources "/hero_abilities", HeroAbilityController
+    resources "/hero_skills", HeroSkillController
+    resources "/lairs", LairController
     resources "/heros", HeroController
+    resources "/phaser_physics_bodies", PhaserPhysicsBodyController
     resources "/places", PlaceController
+    resources "/quests", QuestController
     resources "/sprite_animations", SpriteAnimationController
     resources "/sprite_sheets", SpriteSheetController
     resources "/sprites", SpriteController

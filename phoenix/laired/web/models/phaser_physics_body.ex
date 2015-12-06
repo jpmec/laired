@@ -1,27 +1,24 @@
-defmodule Laired.Hero do
+defmodule Laired.PhaserPhysicsBody do
   use Laired.Web, :model
 
   @derive {Poison.Encoder, only: [
-    :name,
-    :bag,
-    :display_group,
-    :abilities,
-    :skills
+    :collideWorldBounds,
+    :bounce,
+    :gravity
   ]}
 
-  schema "heros" do
-    field :name, :string
 
-    has_one :bag, Laired.Bag
-    has_one :display_group, Laired.DisplayGroup
+  schema "phaser_physics_bodies" do
+    field :collideWorldBounds, :boolean
+    field :bounce, :map
+    field :gravity, :map
 
-    has_many :abilities, Laired.HeroAbility
-    has_many :skills, Laired.HeroSkill
+    belongs_to :sprite, Laired.Sprite
 
     timestamps
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(collideWorldBounds )
   @optional_fields ~w()
 
   @doc """

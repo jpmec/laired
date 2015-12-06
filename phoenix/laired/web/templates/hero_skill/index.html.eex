@@ -1,0 +1,26 @@
+<h2>Listing hero skills</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for hero_skill <- @hero_skills do %>
+    <tr>
+      <td><%= hero_skill.name %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: hero_skill_path(@conn, :show, hero_skill), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: hero_skill_path(@conn, :edit, hero_skill), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: hero_skill_path(@conn, :delete, hero_skill), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New hero skill", to: hero_skill_path(@conn, :new) %>

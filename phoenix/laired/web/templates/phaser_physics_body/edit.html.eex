@@ -1,0 +1,6 @@
+<h2>Edit phaser physics body</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: phaser_physics_body_path(@conn, :update, @phaser_physics_body) %>
+
+<%= link "Back", to: phaser_physics_body_path(@conn, :index) %>
