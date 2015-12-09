@@ -1,0 +1,11 @@
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @stuff.name %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @stuff.description %>
+  </li>
+</ul>

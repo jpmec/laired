@@ -5,4 +5,12 @@
     <%= @bag.name %>
   </li>
 
+  <li>
+    <string>Stuff:</string>
+    <ul>
+        <%= for stuff <- @bag.stuffs  do %>
+            <%= render Laired.StuffView, "properties.html", stuff: stuff %>
+        <% end %>
+    </ul>
+
 </ul>
