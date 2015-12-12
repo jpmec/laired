@@ -1,13 +1,6 @@
 <h2>Show sprite</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @sprite.name %>
-  </li>
-
-</ul>
+<%= render "properties.html", sprite: @sprite %>
 
 <%= link "Edit", to: sprite_path(@conn, :edit, @sprite) %>
 <%= link "Back", to: sprite_path(@conn, :index) %>

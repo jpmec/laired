@@ -30,7 +30,18 @@ defmodule Laired.DisplayGroupController do
 
   def show(conn, %{"id" => id}) do
     display_group = Repo.get!(DisplayGroup, id)
-    render(conn, "show.html", display_group: display_group)
+      |> Repo.preload([
+        {:sprites, :spriteanimations},
+        {:sprites, :spritesheets},
+        {:sprites, :body}
+      ])
+
+    case get_format(conn) do
+      "json" ->
+        render(conn, display_group: display_group)
+      _ ->
+        render(conn, "show.html", display_group: display_group)
+    end
   end
 
   def edit(conn, %{"id" => id}) do

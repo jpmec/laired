@@ -1,0 +1,22 @@
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @sprite.name %>
+  </li>
+
+  <li>
+    <strong>Sprite Animations:</strong>
+      <%= for sprite_animation <- @sprite.spriteanimations  do %>
+        <%= render Laired.SpriteAnimationView, "properties.html", sprite_animation: sprite_animation %>
+      <% end %>
+  </li>
+
+  <li>
+    <strong>Sprite Sheets:</strong>
+      <%= for sprite_sheet <- @sprite.spritesheets  do %>
+        <%= render Laired.SpriteSheetView, "properties.html", sprite_sheet: sprite_sheet %>
+      <% end %>
+  </li>
+
+</ul>

@@ -1,0 +1,16 @@
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @display_group.name %>
+  </li>
+
+  <li>
+    <strong>Sprites:</strong>
+
+    <%= for sprite <- @display_group.sprites  do %>
+      <%= render Laired.SpriteView, "properties.html", sprite: sprite %>
+    <% end %>
+  </li>
+
+</ul>

@@ -1,18 +1,10 @@
 <h2>Show stuff</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @stuff.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @stuff.description %>
-  </li>
-
-</ul>
+<%= render Laired.StuffView, "properties.html", stuff: @stuff %>
 
 <%= link "Edit", to: stuff_path(@conn, :edit, @stuff) %>
 <%= link "Back", to: stuff_path(@conn, :index) %>
+
+
+
+<div stuff-viewer id=<%= @stuff.id %> ></div>

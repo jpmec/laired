@@ -33,7 +33,8 @@ defmodule Laired.StuffController do
       |> Repo.preload({
         :display_group, [
           {:sprites, :spriteanimations},
-          {:sprites, :spritesheets}
+          {:sprites, :spritesheets},
+          {:sprites, :body}
         ]
       })
 

@@ -1,0 +1,23 @@
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @sprite_sheet.name %>
+  </li>
+
+  <li>
+    <strong>Image:</strong>
+    <%= @sprite_sheet.image %>
+  </li>
+
+  <li>
+    <strong>Image Height:</strong>
+    <%= @sprite_sheet.imageheight %>
+  </li>
+
+  <li>
+    <strong>Image Width:</strong>
+    <%= @sprite_sheet.imagewidth %>
+  </li>
+
+</ul>

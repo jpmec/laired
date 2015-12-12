@@ -1,13 +1,6 @@
 <h2>Show sprite animation</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @sprite_animation.name %>
-  </li>
-
-</ul>
+<%= render "properties.html", sprite_animation: @sprite_animation %>
 
 <%= link "Edit", to: sprite_animation_path(@conn, :edit, @sprite_animation) %>
 <%= link "Back", to: sprite_animation_path(@conn, :index) %>

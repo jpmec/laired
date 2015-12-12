@@ -1,0 +1,25 @@
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @sprite_animation.name %>
+  </li>
+
+  <li>
+    <strong>Loop:</strong>
+    <%= @sprite_animation.loop %>
+  </li>
+
+  <li>
+    <strong>Framerate:</strong>
+    <%= @sprite_animation.framerate %>
+  </li>
+
+  <li>
+    <strong>Frames:</strong>
+    <%= for frame <- @sprite_animation.frames do %>
+      <%= frame %>
+    <% end %>
+  </li>
+
+</ul>
