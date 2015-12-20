@@ -4,6 +4,9 @@ defmodule Laired.Repo.Migrations.CreateSprite do
   def change do
     create table(:sprites) do
       add :name, :string
+      add :x, :integer
+      add :y, :integer
+      add :frame, :integer
 
       add :display_group_id, references(:display_groups)
 

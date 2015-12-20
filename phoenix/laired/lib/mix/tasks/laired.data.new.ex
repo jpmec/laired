@@ -84,9 +84,10 @@ defmodule Mix.Tasks.Laired.Data.New do
 
     carrot_sprite = Repo.insert! %Sprite {
       name: "Carrot",
+      x: 0,
+      y: 0,
       display_group_id: carrot_display_group.id
     }
-
 
     carrot_spritesheet = Repo.insert! %SpriteSheet {
       sprite_id: carrot_sprite.id,
@@ -100,6 +101,8 @@ defmodule Mix.Tasks.Laired.Data.New do
 
     hero_sprite = Repo.insert! %Sprite {
       name: "Hero",
+      x: 0,
+      y: 0,
       display_group_id: hero_display_group.id
     }
 

@@ -38,7 +38,7 @@ module.factory 'SpriteSheetsApiResource',
 
 
 module.factory 'SpriteSheetPreloaderFactory',
-(SpriteSheetSpriteFactory)->
+()->
   console.log('SpriteSheetPreloaderFactory')
 
   (sprite_sheet)->
@@ -47,6 +47,21 @@ module.factory 'SpriteSheetPreloaderFactory',
     preload: (game)->
       console.log('SpriteSheetPreloader.preload')
 
-      game.load.image("#{sprite_sheet.name}_image", "sprites/#{sprite_sheet.image}")
+#      game.load.image("#{sprite_sheet.name}_image", "sprites/#{sprite_sheet.image}")
+
+      game.load.spritesheet("#{sprite_sheet.name}_spritesheet", "sprites/#{sprite_sheet.image}", sprite_sheet.imagewidth, sprite_sheet.imageheight)
+
+
+
+
+module.factory 'SpriteSheetCreaterFactory',
+()->
+  console.log('SpriteSheetCreaterFactory')
+
+  (sprite_sheet)->
+    console.log('SpriteSheetCreater')
+
+    create: (game)->
+      console.log('SpriteSheetCreater.create')
 
 

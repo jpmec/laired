@@ -12,6 +12,9 @@ defmodule Laired.Sprite do
 
   schema "sprites" do
     field :name, :string
+    field :x, :integer
+    field :y, :integer
+    field :frame, :integer
 
     has_many :spritesheets, Laired.SpriteSheet
     has_many :spriteanimations, Laired.SpriteAnimation

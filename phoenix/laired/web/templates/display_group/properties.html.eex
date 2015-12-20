@@ -1,5 +1,11 @@
 <ul>
 
+
+  <li>
+    <strong>Id:</strong>
+    <%= link "#{@display_group.id}", to: display_group_path(@conn, :show, @display_group) %>
+  </li>
+
   <li>
     <strong>Name:</strong>
     <%= @display_group.name %>
@@ -9,7 +15,7 @@
     <strong>Sprites:</strong>
 
     <%= for sprite <- @display_group.sprites  do %>
-      <%= render Laired.SpriteView, "properties.html", sprite: sprite %>
+      <%= render Laired.SpriteView, "properties.html", conn: @conn, sprite: sprite %>
     <% end %>
   </li>
 

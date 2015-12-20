@@ -17,14 +17,14 @@ module.factory 'PlaceViewerPreloaderFactory',
 ($location, ImagesLocation, PlacePreloaderFactory)->
   console.log('PlaceViewerPreloaderFactory')
 
-  (tilemap)->
+  (place)->
     preload: (game)->
       console.log('PlaceViewerPreloader.preload')
 
       game.stage.backgroundColor = '#000000';
       game.load.baseURL = ImagesLocation.url()
 
-      PlacePreloaderFactory(tilemap).preload(game)
+      PlacePreloaderFactory(place).preload(game)
 
 
 

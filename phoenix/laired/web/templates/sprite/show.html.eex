@@ -1,6 +1,8 @@
 <h2>Show sprite</h2>
 
-<%= render "properties.html", sprite: @sprite %>
+<%= render "properties.html", conn: @conn, sprite: @sprite %>
 
 <%= link "Edit", to: sprite_path(@conn, :edit, @sprite) %>
 <%= link "Back", to: sprite_path(@conn, :index) %>
+
+<div sprite-viewer id=<%= @sprite.id %> ></div>

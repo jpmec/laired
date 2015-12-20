@@ -6,7 +6,7 @@ module = angular.module 'laired.SpriteViewer', []
 
 
 module.factory 'SpriteViewerPreloaderFactory',
-($location, ImagesLocation, SpriteTilemapFactory)->
+($location, ImagesLocation, SpritePreloaderFactory)->
   console.log('SpriteViewerPreloader')
 
   (sprite)->
@@ -16,16 +16,20 @@ module.factory 'SpriteViewerPreloaderFactory',
       game.stage.backgroundColor = '#000000'
       game.load.baseURL = ImagesLocation.url()
 
+      SpritePreloaderFactory(sprite).preload(game)
+
 
 
 
 module.factory 'SpriteViewerCreaterFactory',
-()->
+(SpriteCreaterFactory)->
   console.log('SpriteViewerCreater')
 
   (sprite)->
     create: (game)->
       console.log('SpriteViewerCreater.create')
+
+      SpriteCreaterFactory(sprite).create(game)
 
 
 
@@ -88,3 +92,31 @@ module.controller 'SpriteViewerController',
         $scope.game = SpriteViewerFactory Sprite.object
 
   $scope.initialize()
+
+
+
+
+module.directive 'spriteViewer',
+()->
+  console.log('spriteViewer')
+
+  {
+    scope:
+      id: '='
+    template: '<div id="sprite_viewer_div">{{id}}{{object | json}}</div>'
+    controller: ($scope, SpritesApiResource, Sprite, SpriteFactory, SpriteViewerFactory)->
+
+      $scope.initialize = ()->
+        console.debug('spriteViewer.controller.initialize')
+
+        resource = SpritesApiResource.get {id: $scope.id}
+        resource.$promise.then (data)->
+          console.debug('spriteViewer.controller.initialize resource promise then ' + JSON.stringify(data))
+
+          Sprite.object = SpriteFactory(data)
+
+          $scope.game = SpriteViewerFactory Sprite.object
+
+
+      $scope.initialize()
+  }

@@ -1,6 +1,6 @@
 <h2>Show sprite sheet</h2>
 
-<%= render "properties.html", sprite_sheet: @sprite_sheet %>
+<%= render "properties.html", conn: @conn, sprite_sheet: @sprite_sheet %>
 
 <%= link "Edit", to: sprite_sheet_path(@conn, :edit, @sprite_sheet) %>
 <%= link "Back", to: sprite_sheet_path(@conn, :index) %>

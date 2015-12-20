@@ -1,6 +1,12 @@
 <ul>
 
   <li>
+    <strong>Id:</strong>
+    <%= link "#{@sprite_sheet.id}", to: sprite_sheet_path(@conn, :show, @sprite_sheet) %>
+  </li>
+
+
+  <li>
     <strong>Name:</strong>
     <%= @sprite_sheet.name %>
   </li>

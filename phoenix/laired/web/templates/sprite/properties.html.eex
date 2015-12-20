@@ -1,8 +1,28 @@
 <ul>
 
   <li>
+    <strong>Id:</strong>
+    <%= link "#{@sprite.id}", to: sprite_path(@conn, :show, @sprite) %>
+  </li>
+
+  <li>
     <strong>Name:</strong>
     <%= @sprite.name %>
+  </li>
+
+  <li>
+    <strong>X:</strong>
+    <%= @sprite.x %>
+  </li>
+
+  <li>
+    <strong>Y:</strong>
+    <%= @sprite.y %>
+  </li>
+
+  <li>
+    <strong>Frame:</strong>
+    <%= @sprite.frame %>
   </li>
 
   <li>
@@ -15,7 +35,7 @@
   <li>
     <strong>Sprite Sheets:</strong>
       <%= for sprite_sheet <- @sprite.spritesheets  do %>
-        <%= render Laired.SpriteSheetView, "properties.html", sprite_sheet: sprite_sheet %>
+        <%= render Laired.SpriteSheetView, "properties.html", conn: @conn, sprite_sheet: sprite_sheet %>
       <% end %>
   </li>
 

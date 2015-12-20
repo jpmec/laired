@@ -24,6 +24,8 @@
     <script>require("web/static/js/app")</script>
     <script>require("web/static/js/game")</script>
     <script>require("web/static/js/chat")</script>
+    <script>require("web/static/js/display_group")</script>
+    <script>require("web/static/js/display_group_viewer")</script>
     <script>require("web/static/js/game/angel")</script>
     <script>require("web/static/js/game/dirt")</script>
     <script>require("web/static/js/game/shovel")</script>
@@ -35,6 +37,8 @@
     <script>require("web/static/js/sprite_viewer")</script>
     <script>require("web/static/js/sprite_sheet")</script>
     <script>require("web/static/js/sprite_sheet_viewer")</script>
+    <script>require("web/static/js/stuff")</script>
+    <script>require("web/static/js/stuff_viewer")</script>
     <script>require("web/static/js/tile")</script>
     <script>require("web/static/js/tile_viewer")</script>
     <script>require("web/static/js/tilemap")</script>

@@ -1,6 +1,8 @@
 <h2>Show display group</h2>
 
-<%= render "properties.html", display_group: @display_group %>
+<%= render "properties.html", conn: @conn, display_group: @display_group %>
 
 <%= link "Edit", to: display_group_path(@conn, :edit, @display_group) %>
 <%= link "Back", to: display_group_path(@conn, :index) %>
+
+<div display-group-viewer id=<%= @display_group.id %> ></div>
