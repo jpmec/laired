@@ -45,11 +45,17 @@ module.factory 'SpriteSheetPreloaderFactory',
     console.log('SpriteSheetPreloader')
 
     preload: (game)->
-      console.log('SpriteSheetPreloader.preload')
+      console.log('SpriteSheetPreloader.preload ' + JSON.stringify(sprite_sheet))
 
-#      game.load.image("#{sprite_sheet.name}_image", "sprites/#{sprite_sheet.image}")
-
-      game.load.spritesheet("#{sprite_sheet.name}_spritesheet", "sprites/#{sprite_sheet.image}", sprite_sheet.imagewidth, sprite_sheet.imageheight)
+      game.load.spritesheet(
+        "#{sprite_sheet.name}_spritesheet",
+        "sprites/#{sprite_sheet.image}",
+        sprite_sheet.framewidth,
+        sprite_sheet.frameheight,
+        sprite_sheet.framemax,
+        sprite_sheet.framemargin,
+        sprite_sheet.framespacing
+      )
 
 
 

@@ -53,8 +53,8 @@ module.factory 'SpriteViewerFactory',
     console.log('SpriteViewerFactory creating ' + JSON.stringify(kwargs))
 
     kwargs_ = _.merge({
-        width: sprite.width
-        height: sprite.height
+        width: sprite.spritesheet.framewidth
+        height: sprite.spritesheet.frameheight
         id: 'sprite_viewer_div'
       }
     , kwargs)
@@ -73,29 +73,6 @@ module.factory 'SpriteViewerFactory',
 
 
 
-module.controller 'SpriteViewerController',
-($scope, SpritesApiResource, Sprite, SpriteFactory, SpriteViewerFactory)->
-  console.log('SpriteViewerController')
-
-  $scope.game = null
-  $scope.sprite = Sprite
-
-
-  $scope.initialize = ()->
-    console.debug('SpritesController.initialize')
-
-    resource = SpritesApiResource.get {id: 1}
-    resource.$promise.then (data)->
-        console.debug('SpritesController.initialize resource promise then ' + JSON.stringify(data))
-
-        Sprite.object = SpriteFactory(data)
-        $scope.game = SpriteViewerFactory Sprite.object
-
-  $scope.initialize()
-
-
-
-
 module.directive 'spriteViewer',
 ()->
   console.log('spriteViewer')
@@ -104,10 +81,17 @@ module.directive 'spriteViewer',
     scope:
       id: '='
     template: '<div id="sprite_viewer_div">{{id}}{{object | json}}</div>'
-    controller: ($scope, SpritesApiResource, Sprite, SpriteFactory, SpriteViewerFactory)->
+    controller: (
+      $scope,
+      $timeout,
+      SpritesApiResource,
+      Sprite,
+      SpriteFactory,
+      SpriteViewerFactory
+    )->
 
-      $scope.initialize = ()->
-        console.debug('spriteViewer.controller.initialize')
+      $scope.get = ()->
+        console.debug('spriteViewer.controller.get ' + $scope.id)
 
         resource = SpritesApiResource.get {id: $scope.id}
         resource.$promise.then (data)->
@@ -116,6 +100,15 @@ module.directive 'spriteViewer',
           Sprite.object = SpriteFactory(data)
 
           $scope.game = SpriteViewerFactory Sprite.object
+        , (error)->
+          console.debug('spriteViewer.controller.initialize resource promise then error ' + JSON.stringify(error))
+
+          $timeout ()->
+            $scope.get()
+
+      $scope.initialize = ()->
+        console.debug('spriteViewer.controller.initialize')
+        $scope.get()
 
 
       $scope.initialize()

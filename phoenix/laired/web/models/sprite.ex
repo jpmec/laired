@@ -4,7 +4,10 @@ defmodule Laired.Sprite do
 
   @derive {Poison.Encoder, only: [
     :name,
-    :spritesheets,
+    :x,
+    :y,
+    :frame,
+    :spritesheet,
     :spriteanimations,
     :body
   ]}
@@ -16,7 +19,7 @@ defmodule Laired.Sprite do
     field :y, :integer
     field :frame, :integer
 
-    has_many :spritesheets, Laired.SpriteSheet
+    has_one :spritesheet, Laired.SpriteSheet
     has_many :spriteanimations, Laired.SpriteAnimation
 
     has_one :body, Laired.PhaserPhysicsBody

@@ -6,8 +6,13 @@ defmodule Laired.Repo.Migrations.CreateSpriteSheet do
       add :name, :string
 
       add :image, :string
-      add :imageheight, :integer
       add :imagewidth, :integer
+      add :imageheight, :integer
+      add :framewidth, :integer
+      add :frameheight, :integer
+      add :framemax, :integer
+      add :framemargin, :integer
+      add :framespacing, :integer
 
       add :sprite_id, references(:sprites)
 

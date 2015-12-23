@@ -32,7 +32,7 @@ defmodule Laired.DisplayGroupController do
     display_group = Repo.get!(DisplayGroup, id)
       |> Repo.preload([
         {:sprites, :spriteanimations},
-        {:sprites, :spritesheets},
+        {:sprites, :spritesheet},
         {:sprites, :body}
       ])
 

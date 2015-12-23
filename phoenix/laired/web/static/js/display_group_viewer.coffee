@@ -104,19 +104,36 @@ module.directive 'displayGroupViewer',
     scope:
       id: '='
     template: '<div id="display_group_viewer_div">{{id}}{{object | json}}</div>'
-    controller: ($scope, DisplayGroupsApiResource, DisplayGroup, DisplayGroupFactory, DisplayGroupViewerFactory)->
+    controller: (
+      $scope,
+      $timeout,
+      DisplayGroupsApiResource,
+      DisplayGroup,
+      DisplayGroupFactory,
+      DisplayGroupViewerFactory
+    )->
 
-      $scope.initialize = ()->
-        console.debug('display_groupViewer.controller.initialize ' + $scope.id)
+      $scope.get = ()->
+        console.debug('displayGroupViewer.controller.get ' + $scope.id)
 
         resource = DisplayGroupsApiResource.get {id: $scope.id}
         resource.$promise.then (data)->
-          console.debug('display_groupViewer.controller.initialize resource promise then ' + JSON.stringify(data))
+          console.debug('display_groupViewer.controller.initialize resource promise then data ' + JSON.stringify(data))
 
           DisplayGroup.object = DisplayGroupFactory(data)
 
           $scope.game = DisplayGroupViewerFactory DisplayGroup.object
 
+        , (error)->
+          console.debug('displayGroupViewer.controller.initialize resource promise then error ' + JSON.stringify(error))
+
+          $timeout ()->
+            $scope.get()
+
+
+      $scope.initialize = ()->
+        console.debug('displayGroupViewer.controller.initialize ' + $scope.id)
+        $scope.get()
 
       $scope.initialize()
   }

@@ -47,8 +47,8 @@ module.factory 'SpritePreloaderFactory',
     preload: (game)->
       console.log('SpritePreloader.preload')
 
-      _.forEach sprite.spritesheets, (spritesheet)->
-        SpriteSheetPreloaderFactory(spritesheet).preload(game)
+      if sprite.spritesheet
+        SpriteSheetPreloaderFactory(sprite.spritesheet).preload(game)
 
 
 
@@ -63,9 +63,12 @@ module.factory 'SpriteCreaterFactory',
     create: (game)->
       console.log('SpritePreloader.create')
 
-      _.forEach sprite.spritesheets, (spritesheet)->
-        SpriteSheetCreaterFactory(spritesheet).create(game)
+      SpriteSheetCreaterFactory(sprite.spritesheet).create(game)
 
-      _.forEach sprite.spritesheets, (spritesheet)->
-        sprite_ = game.add.sprite(sprite.x, sprite.y, "#{spritesheet.name}_spritesheet")
+      game_sprite = game.add.sprite(sprite.x, sprite.y, "#{sprite.spritesheet.name}_spritesheet", sprite.frame)
+
+
+
+      _.forEach sprite.spriteanimations, (animation)->
+        game_sprite.animations.add(animation.name, animation.frames, animation.framerate, animation.loop)
 

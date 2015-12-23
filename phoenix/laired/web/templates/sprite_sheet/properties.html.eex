@@ -17,13 +17,39 @@
   </li>
 
   <li>
+    <strong>Image Width:</strong>
+    <%= @sprite_sheet.imagewidth %>
+  </li>
+
+  <li>
     <strong>Image Height:</strong>
     <%= @sprite_sheet.imageheight %>
   </li>
 
   <li>
-    <strong>Image Width:</strong>
-    <%= @sprite_sheet.imagewidth %>
+    <strong>Frame Width:</strong>
+    <%= @sprite_sheet.framewidth %>
   </li>
+
+  <li>
+    <strong>Frame Height:</strong>
+    <%= @sprite_sheet.frameheight %>
+  </li>
+
+  <li>
+    <strong>Frame Max:</strong>
+    <%= @sprite_sheet.framemax %>
+  </li>
+
+  <li>
+    <strong>Frame Margin:</strong>
+    <%= @sprite_sheet.framemargin %>
+  </li>
+
+  <li>
+    <strong>Frame Spacing:</strong>
+    <%= @sprite_sheet.framespacing %>
+  </li>
+
 
 </ul>

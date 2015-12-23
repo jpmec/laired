@@ -95,7 +95,9 @@ defmodule Mix.Tasks.Laired.Data.New do
       name: "Carrot",
       image: "carrot.png",
       imageheight: 21,
-      imagewidth: 22
+      imagewidth: 22,
+      frameheight: 21,
+      framewidth: 22
     }
 
 
@@ -103,6 +105,7 @@ defmodule Mix.Tasks.Laired.Data.New do
       name: "Hero",
       x: 0,
       y: 0,
+      frame: 4,
       display_group_id: hero_display_group.id
     }
 
@@ -124,8 +127,10 @@ defmodule Mix.Tasks.Laired.Data.New do
 
       name: "Hero",
       image: "hero.png",
+      imagewidth: 288,
       imageheight: 28,
-      imagewidth: 288
+      framewidth: 32,
+      frameheight: 48
     }
 
 

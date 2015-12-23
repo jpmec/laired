@@ -4,16 +4,26 @@ defmodule Laired.SpriteSheet do
   @derive {Poison.Encoder, only: [
     :name,
     :image,
+    :imagewidth,
     :imageheight,
-    :imagewidth
+    :framewidth,
+    :frameheight,
+    :framemax,
+    :framemargin,
+    :framespacing
   ]}
 
   schema "sprite_sheets" do
     field :name, :string
 
     field :image, :string
-    field :imageheight, :integer
     field :imagewidth, :integer
+    field :imageheight, :integer
+    field :framewidth, :integer
+    field :frameheight, :integer
+    field :framemax, :integer, default: -1
+    field :framemargin, :integer, default: 0
+    field :framespacing, :integer, default: 0
 
     belongs_to :sprite, Laired.Sprite
 

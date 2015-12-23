@@ -30,7 +30,7 @@ defmodule Laired.SpriteController do
 
   def show(conn, %{"id" => id}) do
     sprite = Repo.get!(Sprite, id)
-      |> Repo.preload(:spritesheets)
+      |> Repo.preload(:spritesheet)
       |> Repo.preload(:spriteanimations)
       |> Repo.preload(:body)
 

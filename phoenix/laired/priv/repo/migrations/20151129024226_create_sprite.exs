@@ -6,7 +6,7 @@ defmodule Laired.Repo.Migrations.CreateSprite do
       add :name, :string
       add :x, :integer
       add :y, :integer
-      add :frame, :integer
+      add :frame, :integer, default: 0
 
       add :display_group_id, references(:display_groups)
 
