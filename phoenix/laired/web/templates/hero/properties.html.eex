@@ -1,4 +1,10 @@
 <ul>
+
+  <li>
+    <strong>Id:</strong>
+    <%= link "#{@hero.id}", to: hero_path(@conn, :show, @hero) %>
+  </li>
+
   <li>
     <strong>Name:</strong>
     <%= @hero.name %>
@@ -6,7 +12,7 @@
 
   <li>
     <strong>Bag:</strong>
-    <%= render Laired.BagView, "properties.html", bag: @hero.bag %>
+    <%= render Laired.BagView, "properties.html", conn: @conn, bag: @hero.bag %>
   </li>
 
 </ul>

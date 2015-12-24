@@ -1,6 +1,8 @@
 <h2>Show hero</h2>
 
-<%= render "properties.html", hero: @hero %>
+<%= render "properties.html", conn: @conn, hero: @hero %>
 
 <%= link "Edit", to: hero_path(@conn, :edit, @hero) %>
 <%= link "Back", to: hero_path(@conn, :index) %>
+
+<div hero-viewer id=<%= @hero.id %> ></div>

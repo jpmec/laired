@@ -35,14 +35,14 @@ defmodule Laired.HeroController do
           {:stuffs, [
             {:display_group, [
               {:sprites, :spriteanimations},
-              {:sprites, :spritesheets},
+              {:sprites, :spritesheet},
               {:sprites, :body}
             ]}
           ]}
         ]},
         {:display_group, [
           {:sprites, :spriteanimations},
-          {:sprites, :spritesheets},
+          {:sprites, :spritesheet},
           {:sprites, :body}
         ]},
         :abilities,
