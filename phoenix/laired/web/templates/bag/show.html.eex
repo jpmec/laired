@@ -1,13 +1,8 @@
 <h2>Show bag</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @bag.name %>
-  </li>
-
-</ul>
+<%= render "properties.html", conn: @conn, bag: @bag %>
 
 <%= link "Edit", to: bag_path(@conn, :edit, @bag) %>
 <%= link "Back", to: bag_path(@conn, :index) %>
+
+<div bag-viewer id=<%= @bag.id %> ></div>

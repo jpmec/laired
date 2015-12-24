@@ -25,6 +25,8 @@ var lairedApp = angular.module('lairedApp',
     [
         'ngResource',
         'laired.Angel',
+        'laired.Bag',
+        'laired.BagViewer',
         'laired.Chat',
         'laired.DisplayGroup',
         'laired.DisplayGroupViewer',

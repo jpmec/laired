@@ -29,7 +29,16 @@ defmodule Laired.BagController do
   end
 
   def show(conn, %{"id" => id}) do
-    bag = Repo.get!(Bag, id) |> Repo.preload(:stuffs)
+    bag = Repo.get!(Bag, id)
+    |> Repo.preload({
+      :stuffs, {
+        :display_group, [
+          {:sprites, :spriteanimations},
+          {:sprites, :spritesheet},
+          {:sprites, :body}
+        ]
+      }
+    })
 
     case get_format(conn) do
       "json" ->

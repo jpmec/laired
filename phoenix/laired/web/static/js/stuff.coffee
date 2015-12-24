@@ -39,7 +39,7 @@ module.factory 'StuffFactory',
 
 
 module.factory 'StuffPreloaderFactory',
-()->
+(DisplayGroupPreloaderFactory)->
   console.log('StuffPreloaderFactory')
 
   (stuff)->
@@ -48,14 +48,14 @@ module.factory 'StuffPreloaderFactory',
     preload: (game)->
       console.log('StuffPreloader.preload')
 
-      # _.forEach place.tilemaps, (tilemap)->
-      #   TilemapPreloaderFactory(tilemap).preload(game)
+      if stuff.display_group
+        DisplayGroupPreloaderFactory(stuff.display_group).preload(game)
 
 
 
 
 module.factory 'StuffCreaterFactory',
-()->
+(DisplayGroupCreaterFactory)->
   console.log('StuffCreaterFactory')
 
   (stuff)->
@@ -64,9 +64,5 @@ module.factory 'StuffCreaterFactory',
     create: (game)->
       console.log('StuffCreater.create')
 
-      # _.forEach place.tilemaps, (tilemap)->
-      #   TilemapCreaterFactory(tilemap).create(game)
-
-
-
-
+      if stuff.display_group
+        DisplayGroupCreaterFactory(stuff.display_group).create(game)

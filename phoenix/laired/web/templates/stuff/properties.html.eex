@@ -1,6 +1,11 @@
 <ul>
 
   <li>
+    <strong>Id:</strong>
+    <%= link "#{@stuff.id}", to: stuff_path(@conn, :show, @stuff) %>
+  </li>
+
+  <li>
     <strong>Name:</strong>
     <%= @stuff.name %>
   </li>
@@ -11,12 +16,7 @@
   </li>
 
   <li>
-    <strong>Id:</strong>
-    <%= @stuff.id %>
-  </li>
-
-  <li>
     <strong>Display Group:</strong>
-    <%= render Laired.DisplayGroupView, "properties.html", display_group: @stuff.display_group %>
+    <%= render Laired.DisplayGroupView, "properties.html", conn: @conn, display_group: @stuff.display_group %>
   </li>
 </ul>

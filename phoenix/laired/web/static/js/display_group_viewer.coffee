@@ -53,8 +53,8 @@ module.factory 'DisplayGroupViewerFactory',
     console.log('DisplayGroupViewerFactory creating ' + JSON.stringify(kwargs))
 
     kwargs_ = _.merge({
-        width: 100
-        height: 100
+        width: display_group.width
+        height: display_group.height
         id: 'display_group_viewer_div'
       }
     , kwargs)

@@ -63,8 +63,10 @@ module.factory 'DisplayGroupCreaterFactory',
     create: (game)->
       console.log('DisplayGroupCreater.create')
 
-      group_ = game.add.group()
+      game_group = game.add.group()
 
       _.forEach display_group.sprites, (sprite)->
-        sprite_ = SpriteCreaterFactory(sprite).create(game)
-        group_.add(sprite_)
+        game_sprite = SpriteCreaterFactory(sprite).create(game)
+        game_group.add(game_sprite)
+
+      game_group

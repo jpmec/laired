@@ -1,16 +1,21 @@
 <ul>
 
   <li>
+    <strong>Id:</strong>
+    <%= link "#{@bag.id}", to: bag_path(@conn, :show, @bag) %>
+  </li>
+
+  <li>
     <strong>Name:</strong>
     <%= @bag.name %>
   </li>
 
   <li>
-    <string>Stuff:</string>
+    <strong>Stuffs:</strong>
     <ul>
         <%= for stuff <- @bag.stuffs  do %>
-            <%= render Laired.StuffView, "properties.html", stuff: stuff %>
+            <%= render Laired.StuffView, "properties.html", conn: @conn, stuff: stuff %>
         <% end %>
     </ul>
-
+  </li>
 </ul>

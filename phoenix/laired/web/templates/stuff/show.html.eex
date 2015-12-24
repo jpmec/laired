@@ -1,10 +1,8 @@
 <h2>Show stuff</h2>
 
-<%= render Laired.StuffView, "properties.html", stuff: @stuff %>
+<%= render Laired.StuffView, "properties.html", conn: @conn, stuff: @stuff %>
 
 <%= link "Edit", to: stuff_path(@conn, :edit, @stuff) %>
 <%= link "Back", to: stuff_path(@conn, :index) %>
-
-
 
 <div stuff-viewer id=<%= @stuff.id %> ></div>

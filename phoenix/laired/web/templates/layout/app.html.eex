@@ -22,8 +22,10 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script>require("web/static/js/app")</script>
-    <script>require("web/static/js/game")</script>
+    <script>require("web/static/js/bag")</script>
+    <script>require("web/static/js/bag_viewer")</script>
     <script>require("web/static/js/chat")</script>
+    <script>require("web/static/js/game")</script>
     <script>require("web/static/js/display_group")</script>
     <script>require("web/static/js/display_group_viewer")</script>
     <script>require("web/static/js/game/angel")</script>

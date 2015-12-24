@@ -67,8 +67,7 @@ module.factory 'SpriteCreaterFactory',
 
       game_sprite = game.add.sprite(sprite.x, sprite.y, "#{sprite.spritesheet.name}_spritesheet", sprite.frame)
 
-
-
       _.forEach sprite.spriteanimations, (animation)->
         game_sprite.animations.add(animation.name, animation.frames, animation.framerate, animation.loop)
 
+      game_sprite

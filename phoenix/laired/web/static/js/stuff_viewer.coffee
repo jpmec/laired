@@ -53,8 +53,8 @@ module.factory 'StuffViewerFactory',
     console.log('StuffViewerFactory creating ' + JSON.stringify(kwargs))
 
     kwargs_ = _.merge({
-        width: 100
-        height: 100
+        width: stuff.display_group.width
+        height: stuff.display_group.height
         id: 'stuff_viewer_div'
       }
     , kwargs)
@@ -104,18 +104,34 @@ module.directive 'stuffViewer',
     scope:
       id: '='
     template: '<div id="stuff_viewer_div">{{id}}{{object | json}}</div>'
-    controller: ($scope, StuffsApiResource, Stuff, StuffFactory, StuffViewerFactory)->
-
-      $scope.initialize = ()->
-        console.debug('stuffViewer.controller.initialize')
+    controller: (
+      $scope,
+      $timeout,
+      StuffsApiResource,
+      Stuff,
+      StuffFactory,
+      StuffViewerFactory
+    )->
+      $scope.get = ()->
+        console.debug('stuffViewer.controller.get')
 
         resource = StuffsApiResource.get {id: $scope.id}
         resource.$promise.then (data)->
           console.debug('stuffViewer.controller.initialize resource promise then ' + JSON.stringify(data))
 
           Stuff.object = StuffFactory(data)
-
           $scope.game = StuffViewerFactory Stuff.object
+
+        , (error)->
+          console.debug('stuffViewer.controller.initialize resource promise then error ' + JSON.stringify(error))
+
+          $timeout ()->
+            $scope.get()
+
+
+      $scope.initialize = ()->
+        console.debug('stuffViewer.controller.initialize ' + $scope.id)
+        $scope.get()
 
 
       $scope.initialize()
