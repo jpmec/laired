@@ -1,13 +1,6 @@
 <h2>Show hero skill</h2>
 
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @hero_skill.name %>
-  </li>
-
-</ul>
+<%= render "properties.html", conn: @conn, hero_skill: @hero_skill %>
 
 <%= link "Edit", to: hero_skill_path(@conn, :edit, @hero_skill) %>
 <%= link "Back", to: hero_skill_path(@conn, :index) %>

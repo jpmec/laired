@@ -11,8 +11,32 @@
   </li>
 
   <li>
+    <strong>Abilities:</strong>
+    <ul>
+        <%= for ability <- @hero.abilities  do %>
+            <%= render Laired.HeroAbilityView, "properties.html", conn: @conn, hero_ability: ability %>
+        <% end %>
+    </ul>
+  </li>
+
+  <li>
+    <strong>Skills:</strong>
+    <ul>
+        <%= for skill <- @hero.skills  do %>
+            <%= render Laired.HeroSkillView, "properties.html", conn: @conn, hero_skill: skill %>
+        <% end %>
+    </ul>
+  </li>
+
+  <li>
     <strong>Bag:</strong>
     <%= render Laired.BagView, "properties.html", conn: @conn, bag: @hero.bag %>
   </li>
+
+  <li>
+    <strong>Display Group:</strong>
+    <%= render Laired.DisplayGroupView, "properties.html", conn: @conn, display_group: @hero.display_group %>
+  </li>
+
 
 </ul>
